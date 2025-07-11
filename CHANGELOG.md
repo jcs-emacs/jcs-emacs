@@ -65,35 +65,64 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 9.1.0
 > Released Jun 19, 2024
 
-* Add FASM support (e049b015df8a52d10271e3a41aeeca631296a7d5)
-* Remove package `topsy` (77c506758eaca4621cf1a92e9107e5d279721827)
-* fix: Apply workaround for `highlight-indent-guides` (e153bd8fd60ec3f6ed11cd8494e94feb7d1cb7c3)
-* feat: Add Tramp support (8535af30d96e173df46515f03e91d50e472dca5e)
-* Add PO file support (59fa6ba7d8f30be3f16fe849f41fd3c21a44a852)
-* Remove built-in log module, use `ic` instead (70ee1d002ff97cb765b3043e7451f2aeb831e51c)
-* Extract template module to external package (74a2cb84a0fd322d6b4cb73c7a1c0c68cb135f42)
-* Add `.envrc` support (3ff057fc9cfa0c931129e6f5496a2eae4211a34e)
-* Update debugging key bindings (f2ecb5dcb94d8abd373d8a3e3c39049029a65a62)
-* Add QSS support (71a175c4adcfd913131030fb1deb5d2e5f9cc4f0)
-* feat: Add and configure Tex completion packages (31deaa9a9850ae904b9325af2b39dc5a57d0d82b)
-* refactor: Move message clean settings to its modules (727bc53d323580215b7ad3a5cb8b5b84c1b14e3f)
-* feat: Support TailwindCSS completion (a3b065dba11f27566fce2e24492157138d775646)
-* feat: Support Bootstrap completion (a3b065dba11f27566fce2e24492157138d775646)
-* feat: Add Svelte support (e586d9e52d06a054faa1829ba0cf69c128481c34)
-* feat: Add ziglint (9856bbf5530177613e46127b67054d3925f99a91)
-* feat: Add module util (12f7d294e66df3eddc6bbec721ef4196144dcf8f)
-* feat: Support `daemon` (cdb7187af574c6aec3ff09010d59fe2a8814f43b)
-* chore(sideline): Add display mode config (32324992b47b2126241a9ab84410ba7cfdac3752)
-* chore(dashboard): Default to cycle dashboard sections (1956896dd3f85e1fafb980c8aff5dbf01b1a2507)
-* fix(buffer-menu): Ensure `buffer-menu` is clean (548ce7ef47490fa8d0b82b838cc4f8a1e739494b)
-* chore(sideline): Configure `sideline-eglot` (def906559bf90920ff7f2f2df4b8f36dd523230a)
-* chore(checker): Mute display diagnostic (675b982533c978624ff5e745d1621edcb7a0d994)
-* chore: Add `guard-lf` package (d8616223fb07503dffb3ec4ca75361b203ab5b76)
-* feat: Notify the user when `indent-tabs-mode` got activated (7b4eb11cf30fae0309445fa86ac8749a1f276ed8)
-* feat: feat: Replace package `doxygen-asterisk` with `auto-close-block` (2d56f447ac48f89654fbd93872a32b83f8e40b3c)
-* fix(vc-gutter): Ensure `diff-hl` is updated in all valid buffers (53802208c3251cf0f7bd2a0043f34c133a21ee1a)
-* feat(rgb): Replace `rainbow-mode` with `colorful-mode` (695358cbb6475c54aba711615d6f7db61fc9c3fc)
-* feat(tools): Configure `sqlite-mode` (73dc3b0adea778ba5c933cb0c203ec3e82bd6979)
+* feat: Add FASM support ([e049b01][])
+* chore: Remove package `topsy` ([77c5067][])
+* fix: Apply workaround for `highlight-indent-guides` ([e153bd8][])
+* feat: Add Tramp support ([8535af3][])
+* feat: Add PO file support ([59fa6ba][])
+* refactor: Remove built-in log module, use `ic` instead ([70ee1d0][])
+* refactor: Extract template module to external package ([74a2cb8][])
+* feat: Add `.envrc` support ([3ff057f][])
+* chore: Update debugging key bindings ([f2ecb5d][])
+* feat: Add QSS support ([71a175c][])
+* feat: Add and configure Tex completion packages ([31deaa9][])
+* refactor: Move message clean settings to its modules ([727bc53][])
+* feat: Support TailwindCSS completion ([a3b065d][])
+* feat: Support Bootstrap completion ([a3b065d][])
+* feat: Add Svelte support ([e586d9e][])
+* feat: Add ziglint ([9856bbf][])
+* feat: Add module util ([12f7d29][])
+* feat: Support `daemon` ([cdb7187][])
+* chore(sideline): Add display mode config ([3232499][])
+* chore(dashboard): Default to cycle dashboard sections ([1956896][])
+* fix(buffer-menu): Ensure `buffer-menu` is clean ([548ce7e][])
+* chore(sideline): Configure `sideline-eglot` ([def9065][])
+* chore(checker): Mute display diagnostic ([675b982][])
+* chore: Add `guard-lf` package ([d861622][])
+* feat: Notify the user when `indent-tabs-mode` got activated ([7b4eb11][])
+* feat: Replace package `doxygen-asterisk` with `auto-close-block` ([2d56f44][])
+* fix(vc-gutter): Ensure `diff-hl` is updated in all valid buffers ([5380220][])
+* feat(rgb): Replace `rainbow-mode` with `colorful-mode` ([695358c][])
+* feat(tools): Configure `sqlite-mode` ([73dc3b0][])
+
+[e049b01]: ../../commit/e049b015df8a52d10271e3a41aeeca631296a7d5
+[77c5067]: ../../commit/77c506758eaca4621cf1a92e9107e5d279721827
+[e153bd8]: ../../commit/e153bd8fd60ec3f6ed11cd8494e94feb7d1cb7c3
+[8535af3]: ../../commit/8535af30d96e173df46515f03e91d50e472dca5e
+[59fa6ba]: ../../commit/59fa6ba7d8f30be3f16fe849f41fd3c21a44a852
+[70ee1d0]: ../../commit/70ee1d002ff97cb765b3043e7451f2aeb831e51c
+[74a2cb8]: ../../commit/74a2cb84a0fd322d6b4cb73c7a1c0c68cb135f42
+[3ff057f]: ../../commit/3ff057fc9cfa0c931129e6f5496a2eae4211a34e
+[f2ecb5d]: ../../commit/f2ecb5dcb94d8abd373d8a3e3c39049029a65a62
+[71a175c]: ../../commit/71a175c4adcfd913131030fb1deb5d2e5f9cc4f0
+[31deaa9]: ../../commit/31deaa9a9850ae904b9325af2b39dc5a57d0d82b
+[727bc53]: ../../commit/727bc53d323580215b7ad3a5cb8b5b84c1b14e3f
+[a3b065d]: ../../commit/a3b065dba11f27566fce2e24492157138d775646
+[e586d9e]: ../../commit/e586d9e52d06a054faa1829ba0cf69c128481c34
+[9856bbf]: ../../commit/9856bbf5530177613e46127b67054d3925f99a91
+[12f7d29]: ../../commit/12f7d294e66df3eddc6bbec721ef4196144dcf8f
+[cdb7187]: ../../commit/cdb7187af574c6aec3ff09010d59fe2a8814f43b
+[3232499]: ../../commit/32324992b47b2126241a9ab84410ba7cfdac3752
+[1956896]: ../../commit/1956896dd3f85e1fafb980c8aff5dbf01b1a2507
+[548ce7e]: ../../commit/548ce7ef47490fa8d0b82b838cc4f8a1e739494b
+[def9065]: ../../commit/def906559bf90920ff7f2f2df4b8f36dd523230a
+[675b982]: ../../commit/675b982533c978624ff5e745d1621edcb7a0d994
+[d861622]: ../../commit/d8616223fb07503dffb3ec4ca75361b203ab5b76
+[7b4eb11]: ../../commit/7b4eb11cf30fae0309445fa86ac8749a1f276ed8
+[2d56f44]: ../../commit/2d56f447ac48f89654fbd93872a32b83f8e40b3c
+[5380220]: ../../commit/53802208c3251cf0f7bd2a0043f34c133a21ee1a
+[695358c]: ../../commit/695358cbb6475c54aba711615d6f7db61fc9c3fc
+[73dc3b0]: ../../commit/73dc3b0adea778ba5c933cb0c203ec3e82bd6979
 
 ## 9.0.1
 > Released Sep 20, 2023
