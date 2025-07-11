@@ -522,10 +522,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 8.1.0
 > Released Apr 7, 2022
 
-* Fix move file/directory with full path (f3f0c61deb7aa3cc1b437a104c767e10050a73ef)
+* Fix move file/directory with full path ([f3f0c61][])
 * Add new package `nim-mode`.
 * Add new package `shift-number`.
-* Moved custom face config for `markdown-mode` and `org-mode` to external packages (d92b57181b358574245c0ec6c15985b49e4b83ec)
+* Moved custom face config for `markdown-mode` and `org-mode` to external packages ([d92b571][])
 * Add basic support for Julia programming language.
 * Add new package `dotenv-mode`.
 * Add new package `docker-compose-mode`.
@@ -540,21 +540,32 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add new package `shell-pop`.
 * Replace config built-in pop shell functionality with `shell-pop`.
 * Disable save file message by default.
-* Improved reopen buffer command's message. (263244468533c95fcf340b4603b8bb0e3ed00f1e)
+* Improved reopen buffer command's message ([2632444][])
 * Limit lsp message to display in `*Messages*` buffer.
-* Add file name when do `ffap` on `minibuffer` and `vertico`. (1df9e1b4467423dc278ac4963cfd9d42e8d53d28)
+* Add file name when do `ffap` on `minibuffer` and `vertico` ([1df9e1b][])
 * Add support for HLSL language.
 * Add new package `message-clean-mode`.
 * Add new package `buffer-menu-project`.
 * Add new package `buffer-menu-filter`.
-* Default select first candidate (highest score) after sorting while using minibuffer completion. (eb6486a3a9031421127fda03f89ede01d38ba409)
+* Default select first candidate (highest score) after sorting while using minibuffer completion ([eb6486a][])
 * Add new package `electric-indent-sexp`.
 * Add new package `electric-cursor`.
-* Remove implementation of `depends-mode` and `cross-mode`. (8a1500e4738453f757cb9d28a2c09136dedf6bcc)
-* Remove file display function `jcs-html-preview` and `jcs-display-file` (bb47bcee49c2005c10c2b53bb62b923c74fb2741)
-* Moved revert buffer module to external package, [vs-revbuf](https://github.com/emacs-vs/vs-revbuf). (73f88e137f7bf4155ff2a37d8b1c43248cf628c5)
-* Add new package `whole-line-or-region`. (6a6678143c8d03ccbb6fa479d8f711fceccc3e42)
-* Moved Visual Studio editing experience to external package, [vs-edit-mode](https://github.com/emacs-vs/vs-edit-mode) (2db994dbb567d40ccbcd987b09c5a5806db89ed5)
+* Remove implementation of `depends-mode` and `cross-mode` ([8a1500e][])
+* Remove file display function `jcs-html-preview` and `jcs-display-file` ([bb47bce][])
+* Moved revert buffer module to external package, [vs-revbuf](https://github.com/emacs-vs/vs-revbuf) ([73f88e1][])
+* Add new package `whole-line-or-region` ([6a66781][])
+* Moved Visual Studio editing experience to external package, [vs-edit-mode](https://github.com/emacs-vs/vs-edit-mode) ([2db994d][])
+
+[f3f0c61]: ../../commit/f3f0c61deb7aa3cc1b437a104c767e10050a73ef
+[d92b571]: ../../commit/d92b57181b358574245c0ec6c15985b49e4b83ec
+[2632444]: ../../commit/263244468533c95fcf340b4603b8bb0e3ed00f1e
+[1df9e1b]: ../../commit/1df9e1b4467423dc278ac4963cfd9d42e8d53d28
+[eb6486a]: ../../commit/eb6486a3a9031421127fda03f89ede01d38ba409
+[8a1500e]: ../../commit/8a1500e4738453f757cb9d28a2c09136dedf6bcc
+[bb47bce]: ../../commit/bb47bcee49c2005c10c2b53bb62b923c74fb2741
+[73f88e1]: ../../commit/73f88e137f7bf4155ff2a37d8b1c43248cf628c5
+[6a66781]: ../../commit/6a6678143c8d03ccbb6fa479d8f711fceccc3e42
+[2db994d]: ../../commit/2db994dbb567d40ccbcd987b09c5a5806db89ed5
 
 ## 8.0.1
 > Released Jan 29, 2022
@@ -576,9 +587,13 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Installed new package `flx-style` for `completion-styles`.
 * Installed new package `blamer`.
 * Installed new package `mwim`.
-* Change default `completion-styles` to `partial-completion`, so it goes easy on `company-mode` (132d4bc2de4f89cc37ebed2d8c9ff7617fcb26f4)
-* Fix `undo-tree` jumping dedicated window after kill (bbf04f799eeae8ceb7a7b8a891b459cebca0f2ec)
-* Use `flx` for minibuffer `completion-styles` (e8041b1b5e9d2dd440894530ab908cff7d7b0354)
+* Change default `completion-styles` to `partial-completion` ([132d4bc][]), so it goes easy on `company-mode`.
+* Fix `undo-tree` jumping dedicated window after kill ([bbf04f7][]).
+* Use `flx` for minibuffer `completion-styles` ([e8041b1][]).
+
+[132d4bc]: ../../commit/132d4bc2de4f89cc37ebed2d8c9ff7617fcb26f4
+[bbf04f7]: ../../commit/bbf04f799eeae8ceb7a7b8a891b459cebca0f2ec
+[e8041b1]: ../../commit/e8041b1b5e9d2dd440894530ab908cff7d7b0354
 
 ## 8.0.0
 > Released Jan 6, 2022
