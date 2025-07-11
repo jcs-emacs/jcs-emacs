@@ -348,7 +348,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Remove package `flycheck-popup-tip`.
 * Remove package `flycheck-pos-tip`.
 * Disable logging when printing out error messages from `flycheck`.
-* Move entire directory to `.emacs.d`. ([`#32`](../../pull/32))
+* Move entire directory to `.emacs.d`. ([#32](../../pull/32))
 
 ## 7.1.0
 > Released Dec 27, 2021
@@ -573,7 +573,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 6.4.0
 > Released Dec 22, 2020
 
-* Fixed recording recent files while installing issue. (#23)
+* Fixed recording recent files while installing issue. ([#23](../../pull/23))
 * Added generic buffer list filter utility function.
 * Added Emacs Lisp project load path for future Emacs Lisp Project Development.
 * Enabled always defer from `use-package` as default behaviour.
@@ -1489,7 +1489,7 @@ using `jit-lock-register` function.
 * Fixed `50%` of config compile issues.
 * Enable compile version of this config.
 * Fixed `helm` theme inconsistent to the `vs-light` theme.
-* Fixed `right-click-context` package's bug #2 and #7 issues.
+* Fixed `right-click-context` package's. ([#2](../../pull/2) and [#7](../../pull/7))
 * Removed package `pdf-tools`.
 * Implemented automatically enable `read-only-mode` when view source or library files.
 * Removed package `floobits`.
