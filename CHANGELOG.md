@@ -8,32 +8,59 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 9.1.1 (Unreleased)
 > Released N/A
 
-* feat: Replace must kill buffer list with derived mode (c407b9859489c5b31697c9f61871b9e8254baaf7)
-* feat: Add new package `responsive-window` (0af7dfcc565b3813ac8776c6f75bf15fc5c74ea5)
-* fix: Record the window starting point instead first visible line (62039e725e816ad381b6a8d126bb28be22d65101)
-* fix: Force load project elisp files (b663d26669d35c69d0c99dc3a8353946fd2cb7cf)
-* fix: Load theme before `on` prevent potential UI package's errors (0c995aa207eb820d7b0d0778aa23da2c96b12e5f)
-* feat: Add `Coq` support (c8382d9103f98bc4d1015c48bddca0b004018a92)
-* feat: Add `GDShader` support (fdb485a4adb0d29284ca93de9647e47b1bf7f94b)
-* feat: Add `Janet` support (2738bdc83f2b2d00411e9f5bb489087d1ae27c42)
-* feat(lang): Add `geiser` for better `Scheme` support (b981c72a0942ca13a4f9fc0da7edcfd4653482fd)
-* feat: Configure `eldoc-diffstats` (cb2afb004e92d88b54db1506da54d2f43bc9a87f)
-* feat: Add `magit` entry functions (8f9686563559f7b209c289fe24e5d2a6ea9f7c15)
-* fix: Annoying `when-let` deprecation (1e4ca284a4e28d9f333fb3b6337dfdcbb1008a60)
-* fix: Annoying `if-let` deprecation (4a002dfb13987d967123e1a9c5ba8ed9c80d2fce)
-* feat(dired): Make list directories first in `dired` (a502ee445dcfa9d83eff262f9381897044e9c9fd)
-* feat(ui) Enable `sideline` by default (ebf0537358f3de9f8204f4421b4fef96e487c6d5)
-* feat(vc): Add more `magit` plugins (e47a8d0e873001d769eb39c3e85de9fb0a591897)
-* perf(lsp): Add `lsp-smart-req` (fdcddb59e7558346d3dfe80639e8d91f4d7f5890)
-* feat(vc): Use `magit` built-in functionalities to display file icons (7d249ad694a58239d3247b673f8e15a92adc4a18)
-* feat(ui): Add mail tab group (e0ec5c24c7902f862d4793ffdf8fece6bb14076b)
-* feat(fold): Add `savefold` for persistent folding behaviors (98d0f498ccb2d16326f8814c7d4d36a4e2279d51)
-* feat(debugger): Combine `debugger` and `run` functionality (2d4048562fc019da0acc6bbc55242d1767cfc90d)
-* feat(fold): Add new package `fold-this` (5c9b423ba95419dcb8e81477570778739c1ec851)
-* feat(keys): Add support for `defaul-text-scale` (4453b907e5702989ca711c90b3244e04b8f873c6)
-* feat(lang): Add support for `Magik` language (5ab68e5a9deb1671a55c36ca81ea866217f2cfd2)
-* feat(lang): Add `Odin` support (a69d5c11fb3707c92c47bbe29470e7a3eae8bce3)
-* feat(core): Add `back-button` (4da8f3dbcb3ade1598643e2de1ffae5c42b00a4f)
+* feat: Replace must kill buffer list with derived mode ([c407b98][])
+* feat: Add new package `responsive-window` ([0af7dfc][])
+* fix: Record the window starting point instead first visible line ([62039e7][])
+* fix: Force load project elisp files ([b663d26][])
+* fix: Load theme before `on` prevent potential UI package's errors ([0c995aa][])
+* feat: Add `Coq` support ([c8382d9][])
+* feat: Add `GDShader` support ([fdb485a][])
+* feat: Add `Janet` support ([2738bdc][])
+* feat(lang): Add `geiser` for better `Scheme` support ([b981c72][])
+* feat: Configure `eldoc-diffstats` ([cb2afb0][])
+* feat: Add `magit` entry functions ([8f96865][])
+* fix: Annoying `when-let` deprecation ([1e4ca28][])
+* fix: Annoying `if-let` deprecation ([4a002df][])
+* feat(dired): Make list directories first in `dired` ([a502ee4][])
+* feat(ui) Enable `sideline` by default ([ebf0537][])
+* feat(vc): Add more `magit` plugins ([e47a8d0][])
+* perf(lsp): Add `lsp-smart-req` ([fdcddb5][])
+* feat(vc): Use `magit` built-in functionalities to display file icons ([7d249ad][])
+* feat(ui): Add mail tab group ([e0ec5c2][])
+* feat(fold): Add `savefold` for persistent folding behaviors ([98d0f49][])
+* feat(debugger): Combine `debugger` and `run` functionality ([2d40485][])
+* feat(fold): Add new package `fold-this` ([5c9b423][])
+* feat(keys): Add support for `defaul-text-scale` ([4453b90][])
+* feat(lang): Add support for `Magik` language ([5ab68e5][])
+* feat(lang): Add `Odin` support ([a69d5c1][])
+* feat(core): Add `back-button` ([4da8f3d][])
+
+[c407b98]: ../../commit/c407b9859489c5b31697c9f61871b9e8254baaf7
+[0af7dfc]: ../../commit/0af7dfcc565b3813ac8776c6f75bf15fc5c74ea5
+[62039e7]: ../../commit/62039e725e816ad381b6a8d126bb28be22d65101
+[b663d26]: ../../commit/b663d26669d35c69d0c99dc3a8353946fd2cb7cf
+[0c995aa]: ../../commit/0c995aa207eb820d7b0d0778aa23da2c96b12e5f
+[c8382d9]: ../../commit/c8382d9103f98bc4d1015c48bddca0b004018a92
+[fdb485a]: ../../commit/fdb485a4adb0d29284ca93de9647e47b1bf7f94b
+[2738bdc]: ../../commit/2738bdc83f2b2d00411e9f5bb489087d1ae27c42
+[b981c72]: ../../commit/b981c72a0942ca13a4f9fc0da7edcfd4653482fd
+[cb2afb0]: ../../commit/cb2afb004e92d88b54db1506da54d2f43bc9a87f
+[8f96865]: ../../commit/8f9686563559f7b209c289fe24e5d2a6ea9f7c15
+[1e4ca28]: ../../commit/1e4ca284a4e28d9f333fb3b6337dfdcbb1008a60
+[4a002df]: ../../commit/4a002dfb13987d967123e1a9c5ba8ed9c80d2fce
+[a502ee4]: ../../commit/a502ee445dcfa9d83eff262f9381897044e9c9fd
+[ebf0537]: ../../commit/ebf0537358f3de9f8204f4421b4fef96e487c6d5
+[e47a8d0]: ../../commit/e47a8d0e873001d769eb39c3e85de9fb0a591897
+[fdcddb5]: ../../commit/fdcddb59e7558346d3dfe80639e8d91f4d7f5890
+[7d249ad]: ../../commit/7d249ad694a58239d3247b673f8e15a92adc4a18
+[e0ec5c2]: ../../commit/e0ec5c24c7902f862d4793ffdf8fece6bb14076b
+[98d0f49]: ../../commit/98d0f498ccb2d16326f8814c7d4d36a4e2279d51
+[2d40485]: ../../commit/2d4048562fc019da0acc6bbc55242d1767cfc90d
+[5c9b423]: ../../commit/5c9b423ba95419dcb8e81477570778739c1ec851
+[4453b90]: ../../commit/4453b907e5702989ca711c90b3244e04b8f873c6
+[5ab68e5]: ../../commit/5ab68e5a9deb1671a55c36ca81ea866217f2cfd2
+[a69d5c1]: ../../commit/a69d5c11fb3707c92c47bbe29470e7a3eae8bce3
+[4da8f3d]: ../../commit/4da8f3dbcb3ade1598643e2de1ffae5c42b00a4f
 
 ## 9.1.0
 > Released Jun 19, 2024
