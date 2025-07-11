@@ -398,67 +398,126 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 8.2.1
 > Released Jul 22, 2022
 
-* Add new package `sideline-blame` (c4713396e8937da498083bd3730f28bc114e3b47)
-* Add new package `sideline-flymake` (322b5bb5123a60c5dbdcb11458d2c7eca92fe9a0)
-* Add new package `echo-bar` (26c0bf7c657a29368486aac112439a8507927b21)
-* Change modeline color while debugging (c4f224fe926400089d8896f3a89fe545e12e66a2)
-* Add new package `company-dockerfile` (ebb3556e9cb79f66f191e39dee8738d2cd1d33bc)
-* Add new package `company-powershell` (39290625a468462d2ebaccc6a7d8cf4f13851311)
-* Add new package `company-cmd` (b7ed05973c8b8b02a729734d1303ed1291dccba4)
-* Add new package `company-makefile` (0e1d62adddfb8babf9ab1478af58e1519d1f7a28)
-* Add new package `company-autoconf` (cec8940857a8bb434ecf0a37188cd6840602b70c)
-* Add new package `company-coffee` (74e5a42eebaf812f266a4a508d059bed33c7986f)
-* Refactor to use default function to get `*Messages*` buffer instead of declaring another variable explicitly in the global scope (ac7f0791c1f1e3de16a14831d07280957b77e244)
-* Use default function to get `*scratch*` buffer (b6909ccb5f9f4fa6af211ac1e9bb0fd50afc7255)
-* Replace built-in progress reporter with external library `prt` (aa0f6d8bbfe882e2ba4f783e6eca431b392c04cc)
-* Use built-in `scratch-buffer` function instead (5a0957f214aa786b2ea82e41a2aff3052c63eda3)
-* Fix function name `startup--get-buffer-create-scratch` to get scratch buffer `get-scratch-buffer-create` (8788c3015561faf13c46e12a9e5febc5b1a983c2)
-* Drop support for Emacs 28.x (7fa61292bd1553cee46884a98f4959933b55bb12)
-* Diminish buffer `*Bug Help*` as default (cef9be24f401405fe58aed4496e6cac52099487b)
+* Add new package `sideline-blame` ([c471339][])
+* Add new package `sideline-flymake` ([322b5bb][])
+* Add new package `echo-bar` ([26c0bf7][])
+* Change modeline color while debugging ([c4f224f][])
+* Add new package `company-dockerfile` ([ebb3556][])
+* Add new package `company-powershell` ([3929062][])
+* Add new package `company-cmd` ([b7ed059][])
+* Add new package `company-makefile` ([0e1d62a][])
+* Add new package `company-autoconf` ([cec8940][])
+* Add new package `company-coffee` ([74e5a42][])
+* Refactor to use default function to get `*Messages*` buffer instead of declaring another variable explicitly in the global scope ([ac7f079][])
+* Use default function to get `*scratch*` buffer ([b6909cc][])
+* Replace built-in progress reporter with external library `prt` ([aa0f6d8][])
+* Use built-in `scratch-buffer` function instead ([5a0957f][])
+* Fix function name `startup--get-buffer-create-scratch` to get scratch buffer `get-scratch-buffer-create` ([8788c30][])
+* Drop support for Emacs 28.x ([7fa6129][])
+* Diminish buffer `*Bug Help*` as default ([cef9be2][])
+
+[c471339]: ../../commit/c4713396e8937da498083bd3730f28bc114e3b47
+[322b5bb]: ../../commit/322b5bb5123a60c5dbdcb11458d2c7eca92fe9a0
+[26c0bf7]: ../../commit/26c0bf7c657a29368486aac112439a8507927b21
+[c4f224f]: ../../commit/c4f224fe926400089d8896f3a89fe545e12e66a2
+[ebb3556]: ../../commit/ebb3556e9cb79f66f191e39dee8738d2cd1d33bc
+[3929062]: ../../commit/39290625a468462d2ebaccc6a7d8cf4f13851311
+[b7ed059]: ../../commit/b7ed05973c8b8b02a729734d1303ed1291dccba4
+[0e1d62a]: ../../commit/0e1d62adddfb8babf9ab1478af58e1519d1f7a28
+[cec8940]: ../../commit/cec8940857a8bb434ecf0a37188cd6840602b70c
+[74e5a42]: ../../commit/74e5a42eebaf812f266a4a508d059bed33c7986f
+[ac7f079]: ../../commit/ac7f0791c1f1e3de16a14831d07280957b77e244
+[b6909cc]: ../../commit/b6909ccb5f9f4fa6af211ac1e9bb0fd50afc7255
+[aa0f6d8]: ../../commit/aa0f6d8bbfe882e2ba4f783e6eca431b392c04cc
+[5a0957f]: ../../commit/5a0957f214aa786b2ea82e41a2aff3052c63eda3
+[8788c30]: ../../commit/8788c3015561faf13c46e12a9e5febc5b1a983c2
+[7fa6129]: ../../commit/7fa61292bd1553cee46884a98f4959933b55bb12
+[cef9be2]: ../../commit/cef9be24f401405fe58aed4496e6cac52099487b
 
 ## 8.2.0
 > Released Jun 21, 2022
 
-* Drop support for Emacs 27.x (7fa61292bd1553cee46884a98f4959933b55bb12)
-* Prevent whitespace cleanup for `text-mode` (56dca1ac48ef4e613c777b82bac1247513e6c024)
-* Remove development package `ert-runner` (84ffcde033cab6073b3b2624b1c6f40260322a64)
-* Remove development package `el-mock` (8fcc72f1ec5fb723b3262070ad87095d42fea852)
-* Fix bug for newly added packages from archives (6a92be2c8800b478bfb120a4489a7b1930235db0)
-* Add new package `flycheck-eask`. (cd94bbabe3bb5e3878384afea030cb203e0e5050)
-* Move minibuffer flx to external package [vertico-flx](https://github.com/jcs-elpa/vertico-flx) (151d8f20e2d5539add95deb892acfbb0f1638df7)
-* Show `helpful` message while describing things at point (a06c8d1edbb2380cf449a554dda0d10c3433ae3a)
-* Add new package `suggest` (913f278afa145d46924cde5322506cd13dd43e9f)
-* Inhibit redisplay on startup to speed up the startup time (9922190f2e53ccc9a400943140a3c5e6462bde5f)
-* Add new package `company-shell` (6b5d79a65d889222e42343325cf59790c78d97af)
-* Add new package `company-glsl` (122b4a1b541acf7a810253d986d423e216a92ceb)
-* Add new package `arduino-mode` (d4ffb8c6b5ca99619c601c26c85aa6063d6c1806)
-* Add new package `on` and configured to improve startup speed (8c9f797492a74cdb30ba9ff6f7ee483c0683def5)
-* Move init delay to `on-init-ui-hook` (705afe9744fc3efb2ee005beb8db85e0a08b6fbe)
-* Add new package `qml-mode` (e383783356143f9cb25ad315be6227823a7b44d7)
-* Add new package `coffee-mode` (d7a9a999e9dbd8c47fc3e2ac559517b776c0ac31)
-* Add new package `crystal-mode` (72c3dba1d496fd85e96ea8f80da1caa3a56b2e06)
-* Add new package `d-mode` (8bbb6fdce8351cccf22b59e08efa6a5969d8586e)
-* Add new package `feature-mode` (76f0696c15f60c44aced2a6c58a3039d7d214fcf)
-* Add new package `git-assembler-mode`, `graphql-mode`, and `hexo` (444fd96c9a5ebbdab04f74ae18f3a31978b3acfa)
-* Add new package `recentf-excl` (1fde6265b338d17efa5f47b908ad4b30c159d9da)
-* Add new package `javap-mode` (6e6f53f1f2cc05cef2f0065ad214f6d58d65eaa3)
-* Fix conflict between `company-box-doc` and `dashboard` refresh (d49a0310c3a28e1edabb6ba11436b046c701e63f)
-* Fix popup tip showing previous/last description (45451bb3460f0ffabb6af35c989bb3e6290e594c)
-* Fix bury buffer proceed before `diminish-buffer-mode` will jump to unwanted buffer (184ba39015b1b26342c13f8b107b69c389f0aeed)
-* Add new packages `phpt-mode` and `robots-txt-mode` (eb4714b8280490fbf9c6f570479e6f3ba1a3a690)
-* Remove package `blamer` and add new package `vc-msg` (067cfb98a52263754b7d4c4222d2bd9c8c4d0601)
-* Improve `jcs-advice-add` macro (3ec7e943ab0d035610ce6391e7f9d8ed8ff58cb1)
-* Improve `jcs-add-hook` macro (48abd848fba1b2cefa6c7086ca73ac679c3f83ec)
-* Add new package `protobuf-mode` (6e4f27587b5a54a0a7bddc5e0a8cba2e008f1463)
-* Remove tab and spaces converting util functions (5c92fa525f486ef46e2e309ee5d47f48f5fef66a)
-* Move built-in `multiple-cursors` functions to external package `vsc-multiple-cursors` (d12f928aeb4f7765772576d6d0cf6329ffb081b6)
-* Configure `multiple-cursors` for mouse click (454933b94926bab40c09810d49533c3eb3290239)
-* Add new package `gcmh` (39e381d56f12ba9866c71d1e7b2f31775ee25ed2)
-* Disable `page-break-lines` in `emacs-lisp-compilation-mode` (b337b4505ad14c8b756e810e9b1f7b65a598f786)
-* Add new package `sideline-flycheck` (18cdd626331297f77255a8faa922f5dd199bc416)
-* Add new package `docker` (bb0fbb611cce10a1ea4438b9bb0ab95110dd49cc)
-* Configure compilation previous/next error keys (919a84801aef3631fa7dc496a8b997acaeeca0d2)
-* Add new package `sideline-lsp` (b7b7c4ed9359412709f4fc0197005043b6d19fca)
+* Drop support for Emacs 27.x ([7fa6129][])
+* Prevent whitespace cleanup for `text-mode` ([56dca1a][])
+* Remove development package `ert-runner` ([84ffcde][])
+* Remove development package `el-mock` ([8fcc72f][])
+* Fix bug for newly added packages from archives ([6a92be2][])
+* Add new package `flycheck-eask`. ([cd94bba][])
+* Move minibuffer flx to external package [vertico-flx](https://github.com/jcs-elpa/vertico-flx) ([151d8f2][])
+* Show `helpful` message while describing things at point ([a06c8d1][])
+* Add new package `suggest` ([913f278][])
+* Inhibit redisplay on startup to speed up the startup time ([9922190][])
+* Add new package `company-shell` ([6b5d79a][])
+* Add new package `company-glsl` ([122b4a1][])
+* Add new package `arduino-mode` ([d4ffb8c][])
+* Add new package `on` and configured to improve startup speed ([8c9f797][])
+* Move init delay to `on-init-ui-hook` ([705afe9][])
+* Add new package `qml-mode` ([e383783][])
+* Add new package `coffee-mode` ([d7a9a99][])
+* Add new package `crystal-mode` ([72c3dba][])
+* Add new package `d-mode` ([8bbb6fd][])
+* Add new package `feature-mode` ([76f0696][])
+* Add new package `git-assembler-mode`, `graphql-mode`, and `hexo` ([444fd96][])
+* Add new package `recentf-excl` ([1fde626][])
+* Add new package `javap-mode` ([6e6f53f][])
+* Fix conflict between `company-box-doc` and `dashboard` refresh ([d49a031][])
+* Fix popup tip showing previous/last description ([45451bb][])
+* Fix bury buffer proceed before `diminish-buffer-mode` will jump to unwanted buffer ([184ba39][])
+* Add new packages `phpt-mode` and `robots-txt-mode` ([eb4714b][])
+* Remove package `blamer` and add new package `vc-msg` ([067cfb9][])
+* Improve `jcs-advice-add` macro ([3ec7e94][])
+* Improve `jcs-add-hook` macro ([48abd84][])
+* Add new package `protobuf-mode` ([6e4f275][])
+* Remove tab and spaces converting util functions ([5c92fa5][])
+* Move built-in `multiple-cursors` functions to external package `vsc-multiple-cursors` ([d12f928][])
+* Configure `multiple-cursors` for mouse click ([454933b][])
+* Add new package `gcmh` ([39e381d][])
+* Disable `page-break-lines` in `emacs-lisp-compilation-mode` ([b337b45][])
+* Add new package `sideline-flycheck` ([18cdd62][])
+* Add new package `docker` ([bb0fbb6][])
+* Configure compilation previous/next error keys ([919a848][])
+* Add new package `sideline-lsp` ([b7b7c4e][])
+
+[7fa6129]: ../../commit/7fa61292bd1553cee46884a98f4959933b55bb12
+[56dca1a]: ../../commit/56dca1ac48ef4e613c777b82bac1247513e6c024
+[84ffcde]: ../../commit/84ffcde033cab6073b3b2624b1c6f40260322a64
+[8fcc72f]: ../../commit/8fcc72f1ec5fb723b3262070ad87095d42fea852
+[6a92be2]: ../../commit/6a92be2c8800b478bfb120a4489a7b1930235db0
+[cd94bba]: ../../commit/cd94bbabe3bb5e3878384afea030cb203e0e5050
+[151d8f2]: ../../commit/151d8f20e2d5539add95deb892acfbb0f1638df7
+[a06c8d1]: ../../commit/a06c8d1edbb2380cf449a554dda0d10c3433ae3a
+[913f278]: ../../commit/913f278afa145d46924cde5322506cd13dd43e9f
+[9922190]: ../../commit/9922190f2e53ccc9a400943140a3c5e6462bde5f
+[6b5d79a]: ../../commit/6b5d79a65d889222e42343325cf59790c78d97af
+[122b4a1]: ../../commit/122b4a1b541acf7a810253d986d423e216a92ceb
+[d4ffb8c]: ../../commit/d4ffb8c6b5ca99619c601c26c85aa6063d6c1806
+[8c9f797]: ../../commit/8c9f797492a74cdb30ba9ff6f7ee483c0683def5
+[705afe9]: ../../commit/705afe9744fc3efb2ee005beb8db85e0a08b6fbe
+[e383783]: ../../commit/e383783356143f9cb25ad315be6227823a7b44d7
+[d7a9a99]: ../../commit/d7a9a999e9dbd8c47fc3e2ac559517b776c0ac31
+[72c3dba]: ../../commit/72c3dba1d496fd85e96ea8f80da1caa3a56b2e06
+[8bbb6fd]: ../../commit/8bbb6fdce8351cccf22b59e08efa6a5969d8586e
+[76f0696]: ../../commit/76f0696c15f60c44aced2a6c58a3039d7d214fcf
+[444fd96]: ../../commit/444fd96c9a5ebbdab04f74ae18f3a31978b3acfa
+[1fde626]: ../../commit/1fde6265b338d17efa5f47b908ad4b30c159d9da
+[6e6f53f]: ../../commit/6e6f53f1f2cc05cef2f0065ad214f6d58d65eaa3
+[d49a031]: ../../commit/d49a0310c3a28e1edabb6ba11436b046c701e63f
+[45451bb]: ../../commit/45451bb3460f0ffabb6af35c989bb3e6290e594c
+[184ba39]: ../../commit/184ba39015b1b26342c13f8b107b69c389f0aeed
+[eb4714b]: ../../commit/eb4714b8280490fbf9c6f570479e6f3ba1a3a690
+[067cfb9]: ../../commit/067cfb98a52263754b7d4c4222d2bd9c8c4d0601
+[3ec7e94]: ../../commit/3ec7e943ab0d035610ce6391e7f9d8ed8ff58cb1
+[48abd84]: ../../commit/48abd848fba1b2cefa6c7086ca73ac679c3f83ec
+[6e4f275]: ../../commit/6e4f27587b5a54a0a7bddc5e0a8cba2e008f1463
+[5c92fa5]: ../../commit/5c92fa525f486ef46e2e309ee5d47f48f5fef66a
+[d12f928]: ../../commit/d12f928aeb4f7765772576d6d0cf6329ffb081b6
+[454933b]: ../../commit/454933b94926bab40c09810d49533c3eb3290239
+[39e381d]: ../../commit/39e381d56f12ba9866c71d1e7b2f31775ee25ed2
+[b337b45]: ../../commit/b337b4505ad14c8b756e810e9b1f7b65a598f786
+[18cdd62]: ../../commit/18cdd626331297f77255a8faa922f5dd199bc416
+[bb0fbb6]: ../../commit/bb0fbb611cce10a1ea4438b9bb0ab95110dd49cc
+[919a848]: ../../commit/919a84801aef3631fa7dc496a8b997acaeeca0d2
+[b7b7c4e]: ../../commit/b7b7c4ed9359412709f4fc0197005043b6d19fca
 
 ## 8.1.0
 > Released Apr 7, 2022
