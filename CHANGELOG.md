@@ -202,102 +202,198 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 9.0.0
 > Released Jan 01, 2023
 
-* Add new package `company-kaomoji` (1cc6b70e9ab4ae3fc893482c1d38986da6b32e87)
-* Refactor `ts-fold-indicators` face function and get queries function (27e614884c1cb84d8f832280d253d387cdde99b4)
-* Add OCaml support (ddaaf11b98c88c709fecd5db8b8214a63e1bb00f)
-* Add support for `elfeed` (7a3c3ad99bea5088da2c7d681552f55914b37934)
-* Cancel `echo-bar` right padding by default (75416a77c6bb0eef90b71a2ee09ab42202bc7bb5)
-* Add new packages `org-superstar` and `org-fancy-priorities` (695f5f46e611de1529c6bbd57cd251386616d2f7)
-* Add new package `hammy` (8ea21aa67e98efd9a8eb846e6b908fb500afab52)
-* Enable `display-fill-column-indicator-mode` in `text-mode` by default (5283fd976574ecd322e77556bcd0b6790eed7403)
-* Enhance experience with `org-superstars` (5c240a626fe60685f2768eb17a6dbfcc61452134)
-* Add new package `sideline-color` (6c472aa4c92069551a0707760e3d41c12dcd7411)
-* Add support for `haml-mode` (b50bbb26cfddab3e16d849f65e33894ec5a70177)
-* Use package-menu to upgrade packages instead of the prompt (5903e431921a10f023247ba59ee78eaaa59fc961)
-* Extract message utility functions to separate module, `msgu` (d3957bec1ffd3668a5f8861644f6ec2953cd3781)
-* Fix does upgradable menu after package list is refreshed (09d78404f7e8f0bec64d4df78ae9f90e7c6069d9)
-* Add clear filter key for `package-menu` mode (bf36721805a48b6319bd5eb1b9064129af293560)
-* Load `eask-api` when in valid Eask related project (5644b5128cb1f132b9b552cc745377be8528b435)
-* Add new package `editorconfig-generate` (afd3fa07135fd9154b551fffb20822316cf4e3d7)
-* Bind key `C-M-k` to `kill-this-buffer` (758c464dfe76bad0053ce82f4064f382a1ae4ac3)
-* Remove `buffer-menu` feature on display project name (74feaa938d4be1667bab1c1f68308f8c6a250208)
-* Use macro to define `file-header` insertion functions (e5e200684f25325c70906a53a84f526328bc6fbf)
-* Re-define file header source with utility macro (ca4d8e49ba80f78bd34ff610a442c8a8bf7bc097)
-* Turn `completion-ignore-case` on by default (b94542cb51736f26a3842753bbc268116fa4ba06)
-* Add new package `minimap` (ae9ef5a0d93bf8f924c8572d00f026dace2079a3)
-* Replace package `docstr` with `ts-docstr` for better parsing capability (ee85ba4b01401707461ec695038f2ee4cc175f74)
-* Add new package `highlight-doxygen` (ee85ba4b01401707461ec695038f2ee4cc175f74)
-* Enable `minibuffer-depth-indicate-mode` by default (83ecd6c2b256d2fa0dd3b6fa64236ad5aab2843f)
-* Fix typescript insertion with `ts-docstr` (ec8a5592e8f4e6ba707d36218461e2f0a9329822)
-* Add new package `toggle-profiler` (eecf0323d3af8fdcc2b3c2c8e8e62dd78774a3b7)
-* Bind new key to command `keyboard-escape-quit` (3ce9d3ff4ae965a31f1855bf6f9b11c31e2576be)
-* Bind new key to command `toggle-profiler` (f49dfeb07c1e0d3d879cb3acdfb4a5ab892326f2)
-* Bind new key to command `ts-docstr-ask` (9836e3d76afeadcb75c0d7378d38b209dda50e82)
-* Add new packages `gitlab-ci-mode` and `gitlab-ci-mode-flycheck` (984fc836ecb832e047409a1efa03c806205a7c9e)
-* Remove unnecessary config to `auto-mode-alist` (0dad6227b3372d530f55032726693ab41541e8a7)
-* Add new package `sln-mode` to handle `*.sln` file (673a2635efccd1e5258a157e738f8ebdb35f567a)
-* Add new font `Symbola.ttf` for Windows' unicode display (98a74550b9edfcbe30d403418263b6594582652c)
-* Extract undo/redo module to external package `undo-tree-vf` (391bb1e4b1416c1c7f54a19f07c6b83ccd3e4524)
-* Use built-in `bolp` and `eolp` functions instead (0504aa597efd52e9efbefe3e2338349cc5d458fc)
-* Extract parent directory not found when file creation module to external package `ff-guard` (008592968fea55e925c0bbe8e5412b93a4dde7c3)
-* Add new package `prettier` (a2af4f74eea9e6b7861db8babb1de2a4909247a2)
-* Add new package `vs-electric-spacing` (a04369b5ebfa1db7a47bcf156f80614959685190)
-* Add new package `terminal-here` (56ad79fdf537fc1d7380ff4adc71dea5051e00ac)
-* Add new package `quickrun` (e13899b04affe5157a0cacff52b24c1925c293f4)
-* Extract select file in project/pwd to external `ffap` (e9b7c045a2cbd2dfdfc4f519e24a973a0807410b)
-* Extract [@cmuratori](https://github.com/cmuratori)'s run/make script feature to external `execrun` (83d90d53e5324e22e5fbf3c174487ddd22fd7117)
-* Extract find corresponding file module to external package `fof` (b7d018be296f55ca5cd8859b53c68efe326a2399)
-* Extract VSCode editing experience to external package `vsc-edit-mode` (744eb525d3c90055528f650e3991614eb172684a)
-* Removed complex line number configuration, keep it simple (f78fd0b8b96b8fb113f6156d346689622967fa15)
-* Remove dashboard's previous/next blank-lines navigation keys (bfef0c196ac7fdc307552b6d5f663279d540cba4)
-* Extract package module to external package `pkg-dm` (9051c25ce5c07542ea0a52bfb4192d74ac8d1453)
-* Use `elenv` for emacs-lisp environment (92c9db4dbbe49072874fd18d2c27b44a5384bfd4)
-* Remove previouse/next key type option (a4a605f44e18ae2161a8e87598e636bf9f1f51a9)
-* Extract previous/next blank line keys to external package `block-travel` (9f624c1bbb7259da65fd9b468812358d53ee36ca)
-* Add packages for feature sticky header, `topsy` and `org-sticky-header` (a9f01c9ce319e27e04e1a8fac3b56ed14f3d65ab)
-* Add support for Terraform (d241fc77d5c13b3e01e1d0dfd78147b3a7c9a59d)
-* Add support for Zig (2911e870dce6238ab6d960a287cd25c64576bb33)
-* Add support for Racket (f2f314f1eb670b7508c661cf68e0033292fe256c)
-* Add support for Idris (99013713d649e59f07fae5a2bf9e7fe5f96f0800)
-* Add support for VHDL (185046a34e06bc8c4a6abf57c4f6d843a66da722)
-* Add support for Mint (9d50d8a05767f32c373f13240f3eaeb9440f6582)
-* Improve EWW UX (b954b8f5f1782a500eb4a7fda688a8fab0aebd27)
-* Improve `image-mode` UX (80127d5060bbf6ae871d87502dfff27a73c123fe)
-* Add `emp` as default music player (2861743073ecd2e6d7608dac8021fc400104c4bb)
-* Bind keys for `emp` (f5183bee81fea5b0e832ed39282ad76ee9ed70e8)
-* Bind keys for `eww` (500696b4403a50f83951532f0e31ab4b1cd5a2bb)
-* Add support for fish shell-script (44ed9764a7f2dc3e3632c6b0136390a97bce74e4)
-* Add support for ansible (cb91beeff65b63539a2893f67aaa888d9d53dc7b)
-* Remove `rjsx-mode` and `js2-mode`, use default `js-mode` and `js-jsx-mode` (d3b76f615c5030a54ec3d74517a43c734700be50)
-* Add `company` and `flycheck` support for multiple languages (4f71184b0eab6b65bc7f57d615494f9d88afb020)
-* Split moduels to each individual `config.el` file (d97ef5c27090d65e3ba555c41443f5d877764493)
-* Allow `lsp-mode` being active in file without the `project-root` being defined (b737a6515e51b23dfb42c11ab2e49a54f48b9ca4)
-* Add support for elisp keywords completion (19f87363c77d15602f09dd358ce9237fe47ccca1)
-* Extract modeline display to external package `jcs-modeline` (3cb0a6304d4b95fca9a35b4efbf6434eae4494ed)
-* Replace `toggle-quotes` with new package `cycle-quotes` (53c69a8532142b4ede97df717e07c29fff9e66a5)
-* Remove unused command to toggle forward/backward sexp (4703c7fc81152f8818f5c4cba907d64980ae4c0c)
-* Bind keys for `cycle-quote` and `cycle-slash` (8e5dec85c47c4c9ff35e48df6bcbf317b687cc93)
-* Replace `bool-flip` with new package `cycle-at-point` (e3399712e28730fa8b474032e6e17664f153ac68)
-* Add new package `cycle-case-style` (6cad7031a6b0ef58bbf74e74e020b272d53e4b19)
-* Add eldoc support for CSS (9b9b4cd493ef35d31a78300c94cae9ad9e778c84)
-* Add eldoc support for TOML (a0eb8ed975a9a7367ff94789d48f80ebb207dbf3)
-* Use `literate-calc-mode` instead of self-defined calc command (691186d362f79838291779bac6bf50e76eebc015)
-* Move back to use `use-package` (9d2ead748c345b8edcf17fb9ee0e58b1b7464f09)
-* Make echo all `re-mode` commands (26a37fa3b4b6e8f9125a4c8c133e8df03681a496)
-* All major-mode for all .ignore files (a14a111e8c59c08718f620a455a1c14e26f8779e)
-* Add another file paths completion package, `company-paths` (a73cafcaf2f36192de06eeb3096a856f05e01113)
-* Integrate `magit` (54953d780fc9962d5d373cabb9a3c3a2f2c7629e)
-* Add new package `vc-refrest` for better UX (91625bc0ff66f773c8c040b3d56b2e64de8ba497)
-* Add support for `epub` reader (04a1bd1eba474f6949e96f2ec23befc96847de56)
-* Add new package `free-keys` (9925b4ce6dd513843b07b1edae07565366bc8857)
-* Add new package `npm-mode` (78ad3a6cae3cc273c7c10695b1b5a5e5941ec686)
-* Add new package `k8s-mode` for kubernetes configuration file (0db8edb596c264a9256ebf20ea74dd9b9e422a04)
-* Add new module for languages `PureScript` (8ffb007bda2281a53b29782b898c2339033846ab)
-* Add support for `PKGBUILD` file (b14cf80ecac042047e89dbb870ff79e75769bb8c)
-* Add company support for Eask-file, `company-eask` (21655da7edbad6f85aed6cce67994948d831bfe0)
-* Add eldoc support for Eask-file, `eldoc-eask` (fcd62477d4caa5d8c442568e37fd37d3309f0655)
-* Remove `nhexl-mode`, and use `hexl-mode` instead (487e8ec100b915d82205216013c59dd4669e8902)
-* Add annotation for `file-header` templates (5d32dbe973a74cb918a32cd7489773eab247561c)
+* feat: Add new package `company-kaomoji` ([1cc6b70][])
+* refactor: Refactor `ts-fold-indicators` face function and get queries function ([27e6148][])
+* feat: Add OCaml support ([ddaaf11][])
+* feat: Add support for `elfeed` ([7a3c3ad][])
+* fix: Cancel `echo-bar` right padding by default ([75416a7][])
+* feat: Add new packages `org-superstar` and `org-fancy-priorities` ([695f5f4][])
+* feat: Add new package `hammy` ([8ea21aa][])
+* feat: Enable `display-fill-column-indicator-mode` in `text-mode` by default ([5283fd9][])
+* feat: Enhance experience with `org-superstars` ([5c240a6][])
+* feat: Add new package `sideline-color` ([6c472aa][])
+* feat: Add support for `haml-mode` ([b50bbb2][])
+* chore: Use package-menu to upgrade packages instead of the prompt ([5903e43][])
+* refactor: Extract message utility functions to separate module, `msgu` ([d3957be][])
+* fix: Fix does upgradable menu after package list is refreshed ([09d7840][])
+* feat: Add clear filter key for `package-menu` mode ([bf36721][])
+* feat: Load `eask-api` when in valid Eask related project ([5644b51][])
+* feat: Add new package `editorconfig-generate` ([afd3fa0][])
+* keybind: Bind key `C-M-k` to `kill-this-buffer` ([758c464][])
+* chore: Remove `buffer-menu` feature on display project name ([74feaa9][])
+* refactor: Use macro to define `file-header` insertion functions ([e5e2006][])
+* refactor: Re-define file header source with utility macro ([ca4d8e4][])
+* feat: Turn `completion-ignore-case` on by default ([b94542c][])
+* feat: Add new package `minimap` ([ae9ef5a][])
+* chore: Replace package `docstr` with `ts-docstr` for better parsing capability ([ee85ba4][])
+* feat: Add new package `highlight-doxygen` ([ee85ba4][])
+* feat: Enable `minibuffer-depth-indicate-mode` by default ([83ecd6c][])
+* fix: Fix typescript insertion with `ts-docstr` ([ec8a559][])
+* feat: Add new package `toggle-profiler` ([eecf032][])
+* keybind: Bind new key to command `keyboard-escape-quit` ([3ce9d3f][])
+* keybind: Bind new key to command `toggle-profiler` ([f49dfeb][])
+* keybind: Bind new key to command `ts-docstr-ask` ([9836e3d][])
+* feat: Add new packages `gitlab-ci-mode` and `gitlab-ci-mode-flycheck` ([984fc83][])
+* chore: Remove unnecessary config to `auto-mode-alist` ([0dad622][])
+* feat: Add new package `sln-mode` to handle `*.sln` file ([673a263][])
+* feat: Add new font `Symbola.ttf` for Windows' unicode display ([98a7455][])
+* refactor: Extract undo/redo module to external package `undo-tree-vf` ([391bb1e][])
+* refactor: Use built-in `bolp` and `eolp` functions instead ([0504aa5][])
+* refactor: Extract parent directory not found when file creation module to external package `ff-guard` ([0085929][])
+* feat: Add new package `prettier` ([a2af4f7][])
+* feat: Add new package `vs-electric-spacing` ([a04369b][])
+* feat: Add new package `terminal-here` ([56ad79f][])
+* feat: Add new package `quickrun` ([e13899b][])
+* refactor: Extract select file in project/pwd to external `ffap` ([e9b7c04][])
+* refactor: Extract [@cmuratori](https://github.com/cmuratori)'s run/make script feature to external `execrun` ([83d90d5][])
+* refactor: Extract find corresponding file module to external package `fof` ([b7d018b][])
+* refactor: Extract VSCode editing experience to external package `vsc-edit-mode` ([744eb52][])
+* chore: Removed complex line number configuration, keep it simple ([f78fd0b][])
+* chore: Remove dashboard's previous/next blank-lines navigation keys ([bfef0c1][])
+* refactor: Extract package module to external package `pkg-dm` ([9051c25][])
+* refactor: Use `elenv` for emacs-lisp environment ([92c9db4][])
+* chore: Remove previouse/next key type option ([a4a605f][])
+* refactor: Extract previous/next blank line keys to external package `block-travel` ([9f624c1][])
+* feat: Add packages for feature sticky header, `topsy` and `org-sticky-header` ([a9f01c9][])
+* feat: Add support for Terraform ([d241fc7][])
+* feat: Add support for Zig ([2911e87][])
+* feat: Add support for Racket ([f2f314f][])
+* feat: Add support for Idris ([9901371][])
+* feat: Add support for VHDL ([185046a][])
+* feat: Add support for Mint ([9d50d8a][])
+* perf: Improve EWW UX ([b954b8f][])
+* perf: Improve `image-mode` UX ([80127d5][])
+* feat: Add `emp` as default music player ([2861743][])
+* keybind: Bind keys for `emp` ([f5183be][])
+* keybind: Bind keys for `eww` ([500696b][])
+* feat: Add support for fish shell-script ([44ed976][])
+* feat: Add support for ansible ([cb91bee][])
+* chore: Remove `rjsx-mode` and `js2-mode`, use default `js-mode` and `js-jsx-mode` ([d3b76f6][])
+* feat: Add `company` and `flycheck` support for multiple languages ([4f71184][])
+* chore: Split moduels to each individual `config.el` file ([d97ef5c][])
+* feat: Allow `lsp-mode` being active in file without the `project-root` being defined ([b737a65][])
+* feat: Add support for elisp keywords completion ([19f8736][])
+* refactor: Extract modeline display to external package `jcs-modeline` ([3cb0a63][])
+* feat: Replace `toggle-quotes` with new package `cycle-quotes` ([53c69a8][])
+* chore: Remove unused command to toggle forward/backward sexp ([4703c7f][])
+* keybind: Bind keys for `cycle-quote` and `cycle-slash` ([8e5dec8][])
+* feat: Replace `bool-flip` with new package `cycle-at-point` ([e339971][])
+* feat: Add new package `cycle-case-style` ([6cad703][])
+* feat: Add eldoc support for CSS ([9b9b4cd][])
+* feat: Add eldoc support for TOML ([a0eb8ed][])
+* chore: Use `literate-calc-mode` instead of self-defined calc command ([691186d][])
+* chore: Move back to use `use-package` ([9d2ead7][])
+* chore: Make echo all `re-mode` commands ([26a37fa][])
+* feat: All major-mode for all .ignore files ([a14a111][])
+* feat: Add another file paths completion package, `company-paths` ([a73cafc][])
+* feat: Integrate `magit` ([54953d7][])
+* feat: Add new package `vc-refrest` for better UX ([91625bc][])
+* feat: Add support for `epub` reader ([04a1bd1][])
+* feat: Add new package `free-keys` ([9925b4c][])
+* feat: Add new package `npm-mode` ([78ad3a6][])
+* feat: Add new package `k8s-mode` for kubernetes configuration file ([0db8edb][])
+* feat: Add new module for languages `PureScript` ([8ffb007][])
+* feat: Add support for `PKGBUILD` file ([b14cf80][])
+* feat: Add company support for Eask-file, `company-eask` ([21655da][])
+* feat: Add eldoc support for Eask-file, `eldoc-eask` ([fcd6247][])
+* chore: Remove `nhexl-mode`, and use `hexl-mode` instead ([487e8ec][])
+* feat: Add annotation for `file-header` templates ([5d32dbe][])
+
+[1cc6b70]: ../../commit/1cc6b70e9ab4ae3fc893482c1d38986da6b32e87
+[27e6148]: ../../commit/27e614884c1cb84d8f832280d253d387cdde99b4
+[ddaaf11]: ../../commit/ddaaf11b98c88c709fecd5db8b8214a63e1bb00f
+[7a3c3ad]: ../../commit/7a3c3ad99bea5088da2c7d681552f55914b37934
+[75416a7]: ../../commit/75416a77c6bb0eef90b71a2ee09ab42202bc7bb5
+[695f5f4]: ../../commit/695f5f46e611de1529c6bbd57cd251386616d2f7
+[8ea21aa]: ../../commit/8ea21aa67e98efd9a8eb846e6b908fb500afab52
+[5283fd9]: ../../commit/5283fd976574ecd322e77556bcd0b6790eed7403
+[5c240a6]: ../../commit/5c240a626fe60685f2768eb17a6dbfcc61452134
+[6c472aa]: ../../commit/6c472aa4c92069551a0707760e3d41c12dcd7411
+[b50bbb2]: ../../commit/b50bbb26cfddab3e16d849f65e33894ec5a70177
+[5903e43]: ../../commit/5903e431921a10f023247ba59ee78eaaa59fc961
+[d3957be]: ../../commit/d3957bec1ffd3668a5f8861644f6ec2953cd3781
+[09d7840]: ../../commit/09d78404f7e8f0bec64d4df78ae9f90e7c6069d9
+[bf36721]: ../../commit/bf36721805a48b6319bd5eb1b9064129af293560
+[5644b51]: ../../commit/5644b5128cb1f132b9b552cc745377be8528b435
+[afd3fa0]: ../../commit/afd3fa07135fd9154b551fffb20822316cf4e3d7
+[758c464]: ../../commit/758c464dfe76bad0053ce82f4064f382a1ae4ac3
+[74feaa9]: ../../commit/74feaa938d4be1667bab1c1f68308f8c6a250208
+[e5e2006]: ../../commit/e5e200684f25325c70906a53a84f526328bc6fbf
+[ca4d8e4]: ../../commit/ca4d8e49ba80f78bd34ff610a442c8a8bf7bc097
+[b94542c]: ../../commit/b94542cb51736f26a3842753bbc268116fa4ba06
+[ae9ef5a]: ../../commit/ae9ef5a0d93bf8f924c8572d00f026dace2079a3
+[ee85ba4]: ../../commit/ee85ba4b01401707461ec695038f2ee4cc175f74
+[83ecd6c]: ../../commit/83ecd6c2b256d2fa0dd3b6fa64236ad5aab2843f
+[ec8a559]: ../../commit/ec8a5592e8f4e6ba707d36218461e2f0a9329822
+[eecf032]: ../../commit/eecf0323d3af8fdcc2b3c2c8e8e62dd78774a3b7
+[3ce9d3f]: ../../commit/3ce9d3ff4ae965a31f1855bf6f9b11c31e2576be
+[f49dfeb]: ../../commit/f49dfeb07c1e0d3d879cb3acdfb4a5ab892326f2
+[9836e3d]: ../../commit/9836e3d76afeadcb75c0d7378d38b209dda50e82
+[984fc83]: ../../commit/984fc836ecb832e047409a1efa03c806205a7c9e
+[0dad622]: ../../commit/0dad6227b3372d530f55032726693ab41541e8a7
+[673a263]: ../../commit/673a2635efccd1e5258a157e738f8ebdb35f567a
+[98a7455]: ../../commit/98a74550b9edfcbe30d403418263b6594582652c
+[391bb1e]: ../../commit/391bb1e4b1416c1c7f54a19f07c6b83ccd3e4524
+[0504aa5]: ../../commit/0504aa597efd52e9efbefe3e2338349cc5d458fc
+[0085929]: ../../commit/008592968fea55e925c0bbe8e5412b93a4dde7c3
+[a2af4f7]: ../../commit/a2af4f74eea9e6b7861db8babb1de2a4909247a2
+[a04369b]: ../../commit/a04369b5ebfa1db7a47bcf156f80614959685190
+[56ad79f]: ../../commit/56ad79fdf537fc1d7380ff4adc71dea5051e00ac
+[e13899b]: ../../commit/e13899b04affe5157a0cacff52b24c1925c293f4
+[e9b7c04]: ../../commit/e9b7c045a2cbd2dfdfc4f519e24a973a0807410b
+[83d90d5]: ../../commit/83d90d53e5324e22e5fbf3c174487ddd22fd7117
+[b7d018b]: ../../commit/b7d018be296f55ca5cd8859b53c68efe326a2399
+[744eb52]: ../../commit/744eb525d3c90055528f650e3991614eb172684a
+[f78fd0b]: ../../commit/f78fd0b8b96b8fb113f6156d346689622967fa15
+[bfef0c1]: ../../commit/bfef0c196ac7fdc307552b6d5f663279d540cba4
+[9051c25]: ../../commit/9051c25ce5c07542ea0a52bfb4192d74ac8d1453
+[92c9db4]: ../../commit/92c9db4dbbe49072874fd18d2c27b44a5384bfd4
+[a4a605f]: ../../commit/a4a605f44e18ae2161a8e87598e636bf9f1f51a9
+[9f624c1]: ../../commit/9f624c1bbb7259da65fd9b468812358d53ee36ca
+[a9f01c9]: ../../commit/a9f01c9ce319e27e04e1a8fac3b56ed14f3d65ab
+[d241fc7]: ../../commit/d241fc77d5c13b3e01e1d0dfd78147b3a7c9a59d
+[2911e87]: ../../commit/2911e870dce6238ab6d960a287cd25c64576bb33
+[f2f314f]: ../../commit/f2f314f1eb670b7508c661cf68e0033292fe256c
+[9901371]: ../../commit/99013713d649e59f07fae5a2bf9e7fe5f96f0800
+[185046a]: ../../commit/185046a34e06bc8c4a6abf57c4f6d843a66da722
+[9d50d8a]: ../../commit/9d50d8a05767f32c373f13240f3eaeb9440f6582
+[b954b8f]: ../../commit/b954b8f5f1782a500eb4a7fda688a8fab0aebd27
+[80127d5]: ../../commit/80127d5060bbf6ae871d87502dfff27a73c123fe
+[2861743]: ../../commit/2861743073ecd2e6d7608dac8021fc400104c4bb
+[f5183be]: ../../commit/f5183bee81fea5b0e832ed39282ad76ee9ed70e8
+[500696b]: ../../commit/500696b4403a50f83951532f0e31ab4b1cd5a2bb
+[44ed976]: ../../commit/44ed9764a7f2dc3e3632c6b0136390a97bce74e4
+[cb91bee]: ../../commit/cb91beeff65b63539a2893f67aaa888d9d53dc7b
+[d3b76f6]: ../../commit/d3b76f615c5030a54ec3d74517a43c734700be50
+[4f71184]: ../../commit/4f71184b0eab6b65bc7f57d615494f9d88afb020
+[d97ef5c]: ../../commit/d97ef5c27090d65e3ba555c41443f5d877764493
+[b737a65]: ../../commit/b737a6515e51b23dfb42c11ab2e49a54f48b9ca4
+[19f8736]: ../../commit/19f87363c77d15602f09dd358ce9237fe47ccca1
+[3cb0a63]: ../../commit/3cb0a6304d4b95fca9a35b4efbf6434eae4494ed
+[53c69a8]: ../../commit/53c69a8532142b4ede97df717e07c29fff9e66a5
+[4703c7f]: ../../commit/4703c7fc81152f8818f5c4cba907d64980ae4c0c
+[8e5dec8]: ../../commit/8e5dec85c47c4c9ff35e48df6bcbf317b687cc93
+[e339971]: ../../commit/e3399712e28730fa8b474032e6e17664f153ac68
+[6cad703]: ../../commit/6cad7031a6b0ef58bbf74e74e020b272d53e4b19
+[9b9b4cd]: ../../commit/9b9b4cd493ef35d31a78300c94cae9ad9e778c84
+[a0eb8ed]: ../../commit/a0eb8ed975a9a7367ff94789d48f80ebb207dbf3
+[691186d]: ../../commit/691186d362f79838291779bac6bf50e76eebc015
+[9d2ead7]: ../../commit/9d2ead748c345b8edcf17fb9ee0e58b1b7464f09
+[26a37fa]: ../../commit/26a37fa3b4b6e8f9125a4c8c133e8df03681a496
+[a14a111]: ../../commit/a14a111e8c59c08718f620a455a1c14e26f8779e
+[a73cafc]: ../../commit/a73cafcaf2f36192de06eeb3096a856f05e01113
+[54953d7]: ../../commit/54953d780fc9962d5d373cabb9a3c3a2f2c7629e
+[91625bc]: ../../commit/91625bc0ff66f773c8c040b3d56b2e64de8ba497
+[04a1bd1]: ../../commit/04a1bd1eba474f6949e96f2ec23befc96847de56
+[9925b4c]: ../../commit/9925b4ce6dd513843b07b1edae07565366bc8857
+[78ad3a6]: ../../commit/78ad3a6cae3cc273c7c10695b1b5a5e5941ec686
+[0db8edb]: ../../commit/0db8edb596c264a9256ebf20ea74dd9b9e422a04
+[8ffb007]: ../../commit/8ffb007bda2281a53b29782b898c2339033846ab
+[b14cf80]: ../../commit/b14cf80ecac042047e89dbb870ff79e75769bb8c
+[21655da]: ../../commit/21655da7edbad6f85aed6cce67994948d831bfe0
+[fcd6247]: ../../commit/fcd62477d4caa5d8c442568e37fd37d3309f0655
+[487e8ec]: ../../commit/487e8ec100b915d82205216013c59dd4669e8902
+[5d32dbe]: ../../commit/5d32dbe973a74cb918a32cd7489773eab247561c
 
 ## 8.2.1
 > Released Jul 22, 2022
