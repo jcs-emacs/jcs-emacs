@@ -127,42 +127,77 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 9.0.1
 > Released Sep 20, 2023
 
-* Add new package `makefile-executor` (e301333ef7585189614bb1fed163caab2e4a0973)
-* Add new package `codegpt` (443b2e1312368201a8a15d64355e7c9aaf5b8958)
-* Add and config new package `goto-last-change` (71d0c3dfa0636fc55cc1c023e6383d5946b19e3c)
-* Add new package `flycheck-clang-analyzer` (0ea36feb652c0ebe59ab5b80d5739cb23cb4b52b)
-* Add new package `codemetrics` (51032ef78f5b9827ee76c5c48832974c9bd9cf73)
-* Bind <kbd>Shift</kbd>+<kbd>return</kbd> to insert `newline` in minibuffer (41c159ba7d5630fb8e7e235fc8968001f04cbb15)
-* Ask CMake file-header template to differentiate `default`, `root`, and `subdirectory` (71c9bc604b57cb2379606a0b6bc12c42bb79ded7)
-* Update auth-source logic for more general use (8681fb6800d4b4090c7a84dfd9d927035e2bb66a)
-* Add `company-dict` (1b24a4ddd58943fb37010b7700dac32c8d54bea1)
-* Add nerd-icons support (3ae70b96937dedae3b1fe8fc9edf52ad340795d6)
-* Enable comment empty lines by default (2040d77e956cc3c1fb55ec0dae7dfe6c36c2381b)
-* Fix cannot re-connect to language server issue (362a96418032da4244c05c810031ed74bc7b25c4)
-* Add dashboard's navigator (d81fce7fb699f1866839c0bd409475ab758721d4)
-* Fix `indent-guides` is not obvious in 29.x (8456bd051b096af816cd9c0840b6980c21d94c5e)
-* Add `sly` to support common lisp development (fa0afd2d79b8b464f4f2413fcd93978ef168402f)
-* Add support for OpenCL (d5723c34ac53c7983cdfb686884478bcacc4d4a6)
-* Add support for CUDA (d5723c34ac53c7983cdfb686884478bcacc4d4a6)
-* Use `context-menu-mode` instead of `right-click-context` (a7e563ea23121dd6ba340eb8fd8b9daed394f019)
-* Add more support for Clojure language (b84287bde0315c021f73009fcd67e2a0d348d64f)
-* Add breadcrumb mode (a81fcc65af7357eeb4babb58b97b567c5a453b01)
-* Use prog mode settings for `haskell-cabal-mode` (fd8dfb5108882e5fc5a1ad74b129e35c3e1ae762)
-* Add support for P4 (3b16789978d380b6be75f465fa2a3d3dbd9610b1)
-* Add company support for PHP (30c8b00169eefb866df062095c1bf33b6d0729ec)
-* Add company support for Perl (98d4e1494364ca49bf3cd370a659957674eda100)
-* Configure for beancount (40ee14e541453e684d1f836dcc2fa47abda9ece9)
-* Add support for F* (1dc616adae9bdcbf1810058b3d078f831be5cd34)
-* Add support for Hylang (df2337bfb3ef64a3c2e9cbd5422df7eb66b9e698)
-* Add support for Scheme (6fe51f46592cd3e6ceee1ae274b086b046dc93b0)
-* Add support for ledger (5cc7ba8abad0864f9d435519bb35bf45b32d2dcb)
-* Add support for SML (031289bf682aa956cd322e1e1078408f0d79e8ce)
-* Use built-in on first project hook (84a7695b668debed6fb59bbd5313ff9be897d6b7)
-* Add LaTex support (7fbb631c54b82aa43a80c4ad7733143c89773ff1)
-* Add Noir support (7fbb631c54b82aa43a80c4ad7733143c89773ff1)
-* Enable jump to button in Tree-Sitter debug mode (02f5172c7d061732bb0f154ded5898c1baaf16b9)
-* Add Windows Menu's key bindings (0cc2bb8d938f6a549cc3ae9a15ba4776010c6fa8)
-* Add package `chatgpt-sideline` (65409fc4c68254b18ce209e64fcf74b016e2413e)
+* feat: Add new package `makefile-executor` ([e301333][])
+* feat: Add new package `codegpt` ([443b2e1][])
+* feat: Add and config new package `goto-last-change` ([71d0c3d][])
+* feat: Add new package `flycheck-clang-analyzer` ([0ea36fe][])
+* feat: Add new package `codemetrics` ([51032ef][])
+* feat(minibuffer): Bind <kbd>Shift</kbd>+<kbd>Return</kbd> to insert newline ([41c159b][])
+* feat(cmake): Differentiate file-header template types ([71c9bc6][])
+* feat(auth): Update `auth-source` logic for general use ([8681fb6][])
+* feat: Add `company-dict` ([1b24a4d][])
+* feat(ui): Add nerd-icons support ([3ae70b9][])
+* feat: Enable comment empty lines by default ([2040d77][])
+* fix(lsp): Cannot reconnect to language server ([362a964][])
+* feat(dashboard): Add dashboard navigator ([d81fce7][])
+* fix(ui): `indent-guides` visibility in Emacs 29 ([8456bd0][])
+* feat: Add `sly` for Common Lisp development ([fa0afd2][])
+* feat(lang): Add OpenCL support ([d5723c3][])
+* feat(lang): Add CUDA support ([d5723c3][])
+* feat(ui): Use `context-menu-mode` over `right-click-context` ([a7e563e][])
+* feat(lang): Improve Clojure support ([b84287b][])
+* feat(ui): Add breadcrumb mode ([a81fcc6][])
+* feat(lang): Use `prog-mode` settings in `haskell-cabal-mode` ([fd8dfb5][])
+* feat(lang): Add support for P4 ([3b16789][])
+* feat(lang): Add `company` support for PHP ([30c8b00][])
+* feat(lang): Add `company` support for Perl ([98d4e14][])
+* feat(finance): Configure for beancount ([40ee14e][])
+* feat(lang): Add support for F* ([1dc616a][])
+* feat(lang): Add support for Hylang ([df2337b][])
+* feat(lang): Add support for Scheme ([6fe51f4][])
+* feat(finance): Add support for ledger ([5cc7ba8][])
+* feat(lang): Add support for SML ([031289b][])
+* feat(core): Use built-in first project hook ([84a7695][])
+* feat(lang): Add LaTeX support ([7fbb631][])
+* feat(ui): Add Noir support ([7fbb631][])
+* feat(ui): Enable jump to button in Tree-Sitter debug mode ([02f5172][])
+* feat(keys): Add Windows Menu key bindings ([0cc2bb8][])
+* feat: Add package `chatgpt-sideline` ([65409fc][])
+
+[e301333]: ../../commit/e301333ef7585189614bb1fed163caab2e4a0973
+[443b2e1]: ../../commit/443b2e1312368201a8a15d64355e7c9aaf5b8958
+[71d0c3d]: ../../commit/71d0c3dfa0636fc55cc1c023e6383d5946b19e3c
+[0ea36fe]: ../../commit/0ea36feb652c0ebe59ab5b80d5739cb23cb4b52b
+[51032ef]: ../../commit/51032ef78f5b9827ee76c5c48832974c9bd9cf73
+[41c159b]: ../../commit/41c159ba7d5630fb8e7e235fc8968001f04cbb15
+[71c9bc6]: ../../commit/71c9bc604b57cb2379606a0b6bc12c42bb79ded7
+[8681fb6]: ../../commit/8681fb6800d4b4090c7a84dfd9d927035e2bb66a
+[1b24a4d]: ../../commit/1b24a4ddd58943fb37010b7700dac32c8d54bea1
+[3ae70b9]: ../../commit/3ae70b96937dedae3b1fe8fc9edf52ad340795d6
+[2040d77]: ../../commit/2040d77e956cc3c1fb55ec0dae7dfe6c36c2381b
+[362a964]: ../../commit/362a96418032da4244c05c810031ed74bc7b25c4
+[d81fce7]: ../../commit/d81fce7fb699f1866839c0bd409475ab758721d4
+[8456bd0]: ../../commit/8456bd051b096af816cd9c0840b6980c21d94c5e
+[fa0afd2]: ../../commit/fa0afd2d79b8b464f4f2413fcd93978ef168402f
+[d5723c3]: ../../commit/d5723c34ac53c7983cdfb686884478bcacc4d4a6
+[a7e563e]: ../../commit/a7e563ea23121dd6ba340eb8fd8b9daed394f019
+[b84287b]: ../../commit/b84287bde0315c021f73009fcd67e2a0d348d64f
+[a81fcc6]: ../../commit/a81fcc65af7357eeb4babb58b97b567c5a453b01
+[fd8dfb5]: ../../commit/fd8dfb5108882e5fc5a1ad74b129e35c3e1ae762
+[3b16789]: ../../commit/3b16789978d380b6be75f465fa2a3d3dbd9610b1
+[30c8b00]: ../../commit/30c8b00169eefb866df062095c1bf33b6d0729ec
+[98d4e14]: ../../commit/98d4e1494364ca49bf3cd370a659957674eda100
+[40ee14e]: ../../commit/40ee14e541453e684d1f836dcc2fa47abda9ece9
+[1dc616a]: ../../commit/1dc616adae9bdcbf1810058b3d078f831be5cd34
+[df2337b]: ../../commit/df2337bfb3ef64a3c2e9cbd5422df7eb66b9e698
+[6fe51f4]: ../../commit/6fe51f46592cd3e6ceee1ae274b086b046dc93b0
+[5cc7ba8]: ../../commit/5cc7ba8abad0864f9d435519bb35bf45b32d2dcb
+[031289b]: ../../commit/031289bf682aa956cd322e1e1078408f0d79e8ce
+[84a7695]: ../../commit/84a7695b668debed6fb59bbd5313ff9be897d6b7
+[7fbb631]: ../../commit/7fbb631c54b82aa43a80c4ad7733143c89773ff1
+[02f5172]: ../../commit/02f5172c7d061732bb0f154ded5898c1baaf16b9
+[0cc2bb8]: ../../commit/0cc2bb8d938f6a549cc3ae9a15ba4776010c6fa8
+[65409fc]: ../../commit/65409fc4c68254b18ce209e64fcf74b016e2413e
 
 ## 9.0.0
 > Released Jan 01, 2023
