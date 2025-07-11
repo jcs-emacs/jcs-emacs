@@ -8,7 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 9.1.1 (Unreleased)
 > Released N/A
 
-* feat: Replace must kill buffer list with derived mode ([c407b98][])
+* feat: Replace must kill buffer list with derived mode ([`c407b98`](../../commit/c407b9859489c5b31697c9f61871b9e8254baaf7))
 * feat: Add new package `responsive-window` ([0af7dfc][])
 * fix: Record the window starting point instead first visible line ([62039e7][])
 * fix: Force load project elisp files ([b663d26][])
