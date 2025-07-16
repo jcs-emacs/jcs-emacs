@@ -2,7 +2,6 @@
 
 (require 'sh-script)
 (require 'fish-mode)
-(require 'envrc)
 
 ;;
 ;; (@* "Line Endings" )
@@ -56,14 +55,13 @@
 
   (add-hook 'before-save-hook #'jcs-sh--before-save nil t))
 
-(jcs-add-hook '( sh-mode-hook elvish-mode-hook fish-mode-hook nushell-mode-hook
-                 envrc-mode-hook)
+(jcs-add-hook '( sh-mode-hook
+                 elvish-mode-hook fish-mode-hook nushell-mode-hook)
   ;; File Header
   (jcs-insert-header-if-valid '("[.]sh"
                                 "[.]elv"
                                 "[.]fish"
-                                "[.]nu"
-                                "[.]envrc")
+                                "[.]nu")
                               'jcs-insert-sh-template))
 
 ;;
