@@ -57,6 +57,7 @@
     (autoconf-mode                         . "tools/autoconf")
     (csv-mode                              . "tools/csv")
     ((edebug dap-mode)                     . "tools/debugger")
+    (envrc                                 . "tools/direnv")
     (dockerfile-mode                       . "tools/dockerfile")
     (editorconfig                          . "tools/editorconfig")
     ((easky execrun quickrun)              . "tools/eval")
@@ -169,8 +170,7 @@
     (ssass-mode                            . "lang/sass")
     (scala-mode                            . "lang/scala")
     (scheme-mode                           . "lang/scheme")
-    (( sh-script elvish-mode fish-mode nushell-mode
-       envrc)
+    (( sh-script elvish-mode fish-mode nushell-mode)
      . "lang/sh")
     (sql                                   . "lang/sql")
     (swift-mode                            . "lang/swift")
