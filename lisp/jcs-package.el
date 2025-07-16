@@ -176,6 +176,7 @@
            elisp-demos
            elixir-mode
            elm-mode
+           elvish-mode
            emoji-github
            emp
            envrc
