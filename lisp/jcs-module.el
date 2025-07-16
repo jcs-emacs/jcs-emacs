@@ -169,7 +169,8 @@
     (ssass-mode                            . "lang/sass")
     (scala-mode                            . "lang/scala")
     (scheme-mode                           . "lang/scheme")
-    (( sh-script fish-mode nushell-mode envrc)
+    (( sh-script elvish-mode fish-mode nushell-mode
+       envrc)
      . "lang/sh")
     (sql                                   . "lang/sql")
     (swift-mode                            . "lang/swift")
