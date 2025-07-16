@@ -51,14 +51,16 @@
 ;; (@* "Hook" )
 ;;
 
-(jcs-add-hook '( sh-mode-hook fish-mode-hook nushell-mode-hook
-                 envrc-mode-hook)
+(jcs-add-hook '( sh-mode-hook)
   (company-fuzzy-backend-add-before 'company-shell 'company-dabbrev)
 
-  (add-hook 'before-save-hook #'jcs-sh--before-save nil t)
+  (add-hook 'before-save-hook #'jcs-sh--before-save nil t))
 
+(jcs-add-hook '( sh-mode-hook elvish-mode-hook fish-mode-hook nushell-mode-hook
+                 envrc-mode-hook)
   ;; File Header
   (jcs-insert-header-if-valid '("[.]sh"
+                                "[.]elv"
                                 "[.]fish"
                                 "[.]nu"
                                 "[.]envrc")
