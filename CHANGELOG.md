@@ -36,6 +36,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * feat(core): Add `back-button` ([`4da8f3d`](../../commit/4da8f3dbcb3ade1598643e2de1ffae5c42b00a4f))
 * feat(lang): Add `elvish` mode ([`9a4b6e3`](../../commit/9a4b6e399e2a7f856f4dcb5cacfcc56097e4d32b))
 * feat(tools): Add `dirnenv` config ([`2346542`](../../commit/2346542012b66789f0c6fcad65ce9332ff90d7af))
+* feat: Use `kill-current-buffer` command instead ([`0b7e91a`](../../commit/0b7e91a56c34c5c3b4c74aa04dae029154899cb2))
 
 ## 9.1.0
 > Released Jun 19, 2024
