@@ -19,7 +19,7 @@
                               'jcs-insert-swift-template)
 
   (jcs-key-local
-    `(((kbd "M-k") . jcs-maybe-kill-this-buffer))))
+    `(((kbd "M-k") . jcs-maybe-kill-current-buffer))))
 
 ;;
 ;; (@* "Extensions" )

@@ -130,7 +130,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add clear filter key for `package-menu` mode ([`bf36721`](../../commit/bf36721805a48b6319bd5eb1b9064129af293560))
 * Load `eask-api` when in valid Eask related project ([`5644b51`](../../commit/5644b5128cb1f132b9b552cc745377be8528b435))
 * Add new package `editorconfig-generate` ([`afd3fa0`](../../commit/afd3fa07135fd9154b551fffb20822316cf4e3d7))
-* Bind key `C-M-k` to `kill-this-buffer` ([`758c464`](../../commit/758c464dfe76bad0053ce82f4064f382a1ae4ac3))
+* Bind key `C-M-k` to `kill-current-buffer` ([`758c464`](../../commit/758c464dfe76bad0053ce82f4064f382a1ae4ac3))
 * Remove `buffer-menu` feature on display project name ([`74feaa9`](../../commit/74feaa938d4be1667bab1c1f68308f8c6a250208))
 * Use macro to define `file-header` insertion functions ([`e5e2006`](../../commit/e5e200684f25325c70906a53a84f526328bc6fbf))
 * Re-define file header source with utility macro ([`ca4d8e4`](../../commit/ca4d8e49ba80f78bd34ff610a442c8a8bf7bc097))
@@ -1769,7 +1769,7 @@ on the second window in the current frame. Notice this is only a temporary fixed
 * Ensure python tab width is 4 instead of default of 8.
 * Remove load todo, load log and insert-timeofday command functions.
 * Use defense programming in current char string util function.
-* Added is-killed returned value to jcs-maybe-kill-this-buffer util function.
+* Added is-killed returned value to jcs-maybe-kill-current-buffer util function.
 * Fixed jcs' count window util function.
 * Fixed re-builder's maybe kill this buffer function using is-killed variable.
 * Implements python return function => jcs-python-func.el.
@@ -1812,7 +1812,7 @@ on the second window in the current frame. Notice this is only a temporary fixed
  value.
 * Added indent-info package and it's config.
 * Fixed insert header only when buffer-file-name variable available.
-* Fixed bug by adding percise check => jcs-maybe-kill-this-buffer function
+* Fixed bug by adding percise check => jcs-maybe-kill-current-buffer function
  in jcs-edit.el file.
 * Implements check how many times the same buffer shown in different windows
  => jcs-buffer-showns function in jcs-window.el file.

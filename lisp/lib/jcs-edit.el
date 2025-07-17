@@ -339,16 +339,16 @@
   ;; For instance, any `*helm-' buffers.
   (jcs-bury-diminished-buffer))
 
-(defun jcs-kill-this-buffer ()
+(defun jcs-kill-current-buffer ()
   "Kill this buffer."
   (interactive)
   (jcs-lsp-maybe-shutdown)
-  (kill-this-buffer)
+  (kill-current-buffer)
   (jcs-project--track-open-projects)
   ;; If still in the buffer menu, try switch to the previous buffer.
   (when (jcs-buffer-menu-p) (switch-to-prev-buffer)))
 
-(defun jcs-maybe-kill-this-buffer (&optional ecp-same)
+(defun jcs-maybe-kill-current-buffer (&optional ecp-same)
   "Kill buffer if the current buffer is the only shown in one window.
 Otherwise just switch to the previous buffer to keep the buffer.
 
@@ -369,10 +369,10 @@ other window."
       (jcs-bury-buffer)
       (when (and must-kill-p (not multiple-p))
         (setq is-killed t)
-        (with-current-buffer cur-buf (kill-this-buffer))))
+        (with-current-buffer cur-buf (kill-current-buffer))))
      ;; (2) Else, we kill it!
      (t
-      (jcs-kill-this-buffer)
+      (jcs-kill-current-buffer)
       (setq is-killed t)
 
       ;; NOTE: After kill the buffer, if the buffer appear in multiple windows

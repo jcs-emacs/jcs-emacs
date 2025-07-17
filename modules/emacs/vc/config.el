@@ -20,7 +20,7 @@
 
 (jcs-add-hook 'diff-mode-hook
   (jcs-key-local
-    `(((kbd "M-k") . jcs-maybe-kill-this-buffer)
+    `(((kbd "M-k") . jcs-maybe-kill-current-buffer)
       ((kbd "M-K") . jcs-reopen-this-buffer))))
 
 (jcs-add-hook '(gitattributes-mode-hook gitconfig-mode-hook gitignore-mode-hook)

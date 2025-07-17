@@ -118,7 +118,7 @@
     ((kbd "C-b")   . treemacs)  ; `VS Code'
 
 ;;; File editing
-    ((kbd "M-k")   . jcs-maybe-kill-this-buffer)
+    ((kbd "M-k")   . jcs-maybe-kill-current-buffer)
     ((kbd "M-K")   . jcs-reopen-this-buffer)
     ((kbd "C-M-k") . kill-current-buffer)
 
@@ -402,7 +402,7 @@
 ;; ---
 
 (jcs-key messages-buffer-mode-map
-  `(("\ek" . jcs-messages-maybe-kill-this-buffer)
+  `(("\ek" . jcs-messages-maybe-kill-current-buffer)
     ("\eK" . jcs-messages-erase-buffer)))
 
 (jcs-key minibuffer-local-map

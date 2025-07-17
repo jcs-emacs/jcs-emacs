@@ -2,4 +2,4 @@
 
 (use-package browse-kill-ring
   :bind ( :map browse-kill-ring-mode-map
-          ("<escape>" . kill-this-buffer)))
+          ("<escape>" . kill-current-buffer)))

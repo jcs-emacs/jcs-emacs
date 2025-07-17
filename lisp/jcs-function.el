@@ -38,13 +38,13 @@
   (interactive)
   (jcs-switch-to-buffer-other-window (messages-buffer)))
 
-(defun jcs-messages-maybe-kill-this-buffer ()
+(defun jcs-messages-maybe-kill-current-buffer ()
   "Erase the *Messages* buffer."
   (interactive)
   ;; Message one message to retrieve `*Message*' buffer prepare for next use.
   ;; Or else it some operation might prompt some issue that needed `*Message*'
   ;; buffer to be exists.
-  (when (jcs-maybe-kill-this-buffer)
+  (when (jcs-maybe-kill-current-buffer)
     (message ".") (jcs-messages-erase-buffer)))
 
 (defun jcs-messages-erase-buffer ()
