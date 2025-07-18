@@ -37,6 +37,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * feat(lang): Add `elvish` mode ([`9a4b6e3`](../../commit/9a4b6e399e2a7f856f4dcb5cacfcc56097e4d32b))
 * feat(tools): Add `dirnenv` config ([`2346542`](../../commit/2346542012b66789f0c6fcad65ce9332ff90d7af))
 * feat: Use `kill-current-buffer` command instead ([`0b7e91a`](../../commit/0b7e91a56c34c5c3b4c74aa04dae029154899cb2))
+* feat(lang): Config more `eldoc` for elisp ([`9db9cb0`](../../commit/9db9cb01ded4a01bb483a78b51a6b35f4ee21e2e))
 
 ## 9.1.0
 > Released Jun 19, 2024
