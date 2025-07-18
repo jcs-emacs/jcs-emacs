@@ -164,7 +164,6 @@
            ecukes
            editorconfig-generate
            el-mock
-           eldoc-box
            eldoc-cmake
            eldoc-diffstat
            eldoc-eask
