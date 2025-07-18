@@ -60,9 +60,10 @@
          (doc (jcs--eldoc-remove-signature doc))
          (doc (jcs-fill-string doc)))
     (when fn-sym
-      (funcall callback (format "%s\n\n%s"
-                                (apply #'elisp-get-fnsym-args-string sym-info)
-                                (propertize doc 'face 'font-lock-doc-face))
+      (funcall callback
+               (if-let* ((sig (apply #'elisp-get-fnsym-args-string sym-info)))
+                   (format "%s\n\n%s" sig (propertize doc 'face 'font-lock-doc-face))
+                 sig)
                :thing fn-sym
                :face (if (functionp fn-sym)
                          'font-lock-function-name-face
