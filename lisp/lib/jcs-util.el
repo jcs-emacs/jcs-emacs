@@ -644,5 +644,13 @@ or `suffix'."
          (jcs-current-point-face '(font-lock-string-face
                                    tree-sitter-hl-face:string)))))
 
+(defun jcs-fill-string (str &optional column)
+  "Fill STR with COLUMN size."
+  (with-temp-buffer
+    (let ((fill-column (or column (frame-width))))
+      (insert str)
+      (fill-region (point-min) (point-max))
+      (buffer-string))))
+
 (provide 'jcs-util)
 ;;; jcs-util.el ends here
