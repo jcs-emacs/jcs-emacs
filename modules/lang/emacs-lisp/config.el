@@ -14,6 +14,61 @@
   "Lisp file header format.")
 
 ;;
+;; (@* "ElDoc" )
+;;
+
+(defun jcs--eldoc-remove-signature (str)
+  "Remove function signature from STR."
+  (with-temp-buffer
+    (insert str)
+    (goto-char (point-max))
+    (when (jcs-current-char-equal-p ")")
+      (backward-sexp)
+      (delete-region (point) (point-max)))
+    (string-trim (buffer-string))))
+
+(defun jcs--elisp-eldoc-var-docstring-with-value (callback &rest _)
+  "Edited from the function `elisp-eldoc-var-docstring-with-value'."
+  (when-let ((cs (elisp--current-symbol)))
+    (when (and (boundp cs)
+               ;; nil and t are boundp!
+               (not (null cs))
+               (not (eq cs t)))
+      (funcall callback
+               (format "%.100S\n%s"
+                       (symbol-value cs)
+                       (let* ((doc (documentation-property
+                                    cs 'variable-documentation t))
+                              (more (- (length doc) 1000)))
+                         (concat (propertize
+                                  (jcs-fill-string
+                                   (if (string= doc "nil")
+                                       "Undocumented."
+                                     doc))
+                                  'face 'font-lock-doc-face)
+                                 (when (> more 0)
+                                   (format "[%sc more]" more)))))
+               :thing cs
+               :face 'font-lock-variable-name-face))))
+
+(defun jcs--elisp-eldoc-funcall (callback &rest _ignored)
+  "Edited from the function `elisp-eldoc-funcall'."
+  (let* ((sym-info (elisp--fnsym-in-current-sexp))
+         (fn-sym (car sym-info))
+         (doc (or (ignore-errors (documentation fn-sym t))
+                  ""))
+         (doc (jcs--eldoc-remove-signature doc))
+         (doc (jcs-fill-string doc)))
+    (when fn-sym
+      (funcall callback (format "%s\n\n%s"
+                                (apply #'elisp-get-fnsym-args-string sym-info)
+                                (propertize doc 'face 'font-lock-doc-face))
+               :thing fn-sym
+               :face (if (functionp fn-sym)
+                         'font-lock-function-name-face
+                       'font-lock-keyword-face)))))
+
+;;
 ;; (@* "Hooks" )
 ;;
 
@@ -24,6 +79,11 @@
                                 'jcs-insert-emacs-lisp-template))
 
   (company-fuzzy-backend-add-before 'company-elisp-keywords 'company-dabbrev)
+
+  (add-hook 'eldoc-documentation-functions
+            #'jcs--elisp-eldoc-funcall nil t)
+  (add-hook 'eldoc-documentation-functions
+            #'jcs--elisp-eldoc-var-docstring-with-value nil t)
 
   (eask-api-setup))
 
