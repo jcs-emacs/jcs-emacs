@@ -1,7 +1,7 @@
 ;; -*- mode: eask; lexical-binding: t -*-
 
 (package "jcs-emacs"
-         "9.1.1"
+         "9.2.0"
          "Emacs configuration works across all OSs")
 
 (website-url "https://github.com/jcs-emacs/jcs-emacs")
