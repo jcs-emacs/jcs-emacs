@@ -33,8 +33,11 @@
 ;; (@* "Startup" )
 ;;
 
-(when (version< emacs-version "30.1")
-  (error "This requires Emacs 30.1 and above!"))
+(defconst jcs-required-emacs-version "30.1"
+  "Minimum required Emacs version for this configuration.")
+
+(when (version< emacs-version jcs-required-emacs-version)
+  (error "This requires Emacs %s and above!" jcs-required-emacs-version))
 
 (when (featurep 'esup-child) (setq gc-cons-threshold most-positive-fixnum))
 
