@@ -336,5 +336,10 @@
 ;;; Word Wrap
 (setq word-wrap-by-category t)
 
+;;
+;;; Xref
+(use-package xref
+  :hook (xref--xref-buffer-mode . nerd-icons-xref-mode))
+
 (provide 'jcs-env)
 ;;; jcs-env.el ends here
