@@ -5,8 +5,13 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
-## 9.1.1 (Unreleased)
+## 9.2.1 (Unreleased)
 > Released N/A
+
+* N/A
+
+## 9.2.0
+> Released Jul 21, 2025
 
 * feat: Replace must kill buffer list with derived mode ([`c407b98`](../../commit/c407b9859489c5b31697c9f61871b9e8254baaf7))
 * feat: Add new package `responsive-window` ([`0af7dfc`](../../commit/0af7dfcc565b3813ac8776c6f75bf15fc5c74ea5))
