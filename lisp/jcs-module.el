@@ -32,6 +32,7 @@
     (compile                               . "emacs/compile")
     (conf-mode                             . "emacs/conf-mode")
     (dired                                 . "emacs/dired")
+    (grep                                  . "emacs/grep")
     (hexl-mode                             . "emacs/hexl")
     (ibuffer                               . "emacs/ibuffer")
     (image-mode                            . "emacs/image")
