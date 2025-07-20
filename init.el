@@ -39,8 +39,6 @@
 (when (version< emacs-version jcs-required-emacs-version)
   (error "This requires Emacs %s and above!" jcs-required-emacs-version))
 
-(when (featurep 'esup-child) (setq gc-cons-threshold most-positive-fixnum))
-
 ;;
 ;; (@* "Version" )
 ;;
@@ -64,6 +62,8 @@
 ;;
 ;; (@* "Core" )
 ;;
+
+(when (featurep 'esup-child) (setq gc-cons-threshold most-positive-fixnum))
 
 (setq load-path
       (append (mapcar
