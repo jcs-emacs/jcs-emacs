@@ -102,6 +102,7 @@
 ;;; M
      ((memq major-mode '( message-mode mu4e-compose-mode))
       "Mail")
+     ((memq major-mode '( image-mode)) "Media")
 ;;; N
      ((jcs-member name '("[*]httpd[*]"
                          "[*]HTTP Response[*]")
@@ -144,15 +145,19 @@
                          "magit[-]*[[:ascii:]]*[:]")
                   'regex)
       "Version Control")
+;;; X
+     ((jcs-member name '("[*]xref") 'regex)
+      "Xref")
+
+;;; (@* "Fallback" )
+
 ;;; Hidden
      ((and (featurep 'buffer-menu-filter)
            (diminish-buffer--filter name))
       "Hidden")
-;;; Media
-     ((memq major-mode '( image-mode)) "Media")
-;;; Fallback Elisp
+;;; Elisp
      ((derived-mode-p 'emacs-lisp-mode) "Elisp")
-;;; Fallback Emacs
+;;; Emacs
      ((string-equal "*" (substring name 0 1))
       "Emacs")
 ;;; Default
