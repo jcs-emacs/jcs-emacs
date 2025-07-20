@@ -372,6 +372,7 @@
            nerd-icons-buffer-menu
            nerd-icons-completion
            nerd-icons-dired
+           nerd-icons-grep
            nerd-icons-ibuffer
            nginx-mode
            nim-mode
