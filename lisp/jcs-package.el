@@ -374,6 +374,7 @@
            nerd-icons-dired
            nerd-icons-grep
            nerd-icons-ibuffer
+           nerd-icons-xref
            nginx-mode
            nim-mode
            ninja-mode
