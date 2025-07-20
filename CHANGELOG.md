@@ -8,7 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 9.2.1 (Unreleased)
 > Released N/A
 
-* N/A
+* feat(lisp): Add `nerd-icons` for `xref` ([`ae67ce4`](../../commit/ae67ce48a7466ab676f1bff5f6f048482e04b395))
 
 ## 9.2.0
 > Released Jul 21, 2025
