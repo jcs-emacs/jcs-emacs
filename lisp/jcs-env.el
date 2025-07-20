@@ -206,7 +206,8 @@
            toggle-truncate-lines
            after-find-file ff-find-the-other-file
            undo
-           toggle-profiler)
+           toggle-profiler
+           xref-backend-references)
         message-clean-mode-minor-mode 'echo))
 
 (use-package msgu
