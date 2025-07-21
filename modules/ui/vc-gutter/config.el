@@ -12,7 +12,9 @@
         ;; PERF: Slightly more conservative delay before updating the diff
         diff-hl-flydiff-delay 0.5  ; default: 0.3
         ;; PERF: don't block Emacs when updating vc gutter
-        diff-hl-update-async t
+        ;;
+        ;; NOTE: Async feature is buggy for now.
+        diff-hl-update-async nil
         ;; UX: get realtime feedback in diffs after staging/unstaging hunks
         diff-hl-show-staged-changes nil))
 
