@@ -26,6 +26,7 @@
           ;; from project to project.
           ("NOTE" success bold)
           ("BUG" error bold)
+          ("PERF" error bold)
           ("XXX" font-lock-constant-face bold))))
 
 (use-package flycheck-hl-todo
