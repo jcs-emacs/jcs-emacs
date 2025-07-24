@@ -92,7 +92,8 @@
                                     "shell-mode" "eshell-mode"
                                     "sqlite-mode"
                                     "checkdoc-output-mode"
-                                    "proof-splash-mode")))
+                                    "proof-splash-mode"
+                                    "diffview-mode")))
 
 ;;
 ;; (@* "Hook" )
