@@ -41,7 +41,7 @@
     (text-mode                             . "emacs/text-mode")
     (tramp                                 . "emacs/tramp")
     (undo-tree                             . "emacs/undo")
-    (( gitattributes-mode gitconfig-mode gitignore-mode
+    (( diff-mode gitattributes-mode gitconfig-mode gitignore-mode
        vc-refresh)
      . "emacs/vc")
     (message                               . "email/message")
