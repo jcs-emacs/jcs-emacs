@@ -152,6 +152,7 @@
            dashboard-ls
            default-text-scale
            diff-hl
+           diffview
            diminish-buffer
            diredfl
            dist-file-mode
