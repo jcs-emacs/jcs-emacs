@@ -9,6 +9,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 > Released N/A
 
 * feat(lisp): Add `nerd-icons` for `xref` ([`ae67ce4`](../../commit/ae67ce48a7466ab676f1bff5f6f048482e04b395))
+* fix(module): Load diff config for diff-mode ([`2372ebf`](../../commit/2372ebf5f69baf445cfcc1024bd9497dfe09c5f7))
 
 ## 9.2.0
 > Released Jul 21, 2025
@@ -44,7 +45,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * feat: Use `kill-current-buffer` command instead ([`0b7e91a`](../../commit/0b7e91a56c34c5c3b4c74aa04dae029154899cb2))
 * feat(lang): Config more `eldoc` for elisp ([`9db9cb0`](../../commit/9db9cb01ded4a01bb483a78b51a6b35f4ee21e2e))
 * feat(emacs): Add `nerd-icons` for `grep` ([`e6fedfe`](../../commit/e6fedfeadc0d68ca033f9480c10791da2260b337))
-* fix(module): Load diff config for diff-mode ([`2372ebf`](../../commit/2372ebf5f69baf445cfcc1024bd9497dfe09c5f7))
 
 ## 9.1.0
 > Released Jun 19, 2024
