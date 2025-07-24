@@ -78,6 +78,8 @@
                          "[*]edebug" "[*]dap-" "[*]debug-")
                   'regex)
       "Debugger")
+     ((memq major-mode '( diffview-mode))
+      "Diff")
      ((derived-mode-p 'dired-mode)
       "Dired")
 ;;; L
