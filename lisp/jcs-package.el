@@ -155,6 +155,7 @@
            diffview
            diminish-buffer
            dired-git-info
+           dired-gitignore
            diredfl
            dist-file-mode
            docker
