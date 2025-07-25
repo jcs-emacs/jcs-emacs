@@ -28,5 +28,8 @@
 (use-package diredfl
   :hook (dired-mode . diredfl-mode))
 
+(use-package dired-git-info
+  :hook (dired-after-readin . dired-git-info-auto-enable))
+
 (use-package nerd-icons-dired
   :hook (dired-mode . nerd-icons-dired-mode))
