@@ -29,7 +29,9 @@
   :hook (dired-mode . diredfl-mode))
 
 (use-package dired-git-info
-  :hook (dired-after-readin . dired-git-info-auto-enable))
+  :hook (dired-after-readin . dired-git-info-auto-enable)
+  :init
+  (setq dgi-auto-hide-details-p nil))
 
 (use-package nerd-icons-dired
   :hook (dired-mode . nerd-icons-dired-mode))
