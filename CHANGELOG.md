@@ -11,6 +11,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * feat(lisp): Add `nerd-icons` for `xref` ([`ae67ce4`](../../commit/ae67ce48a7466ab676f1bff5f6f048482e04b395))
 * fix(module): Load diff config for `diff-mode` ([`2372ebf`](../../commit/2372ebf5f69baf445cfcc1024bd9497dfe09c5f7))
 * feat(vc): Add new package `diffview` ([`2155ec9`](../../commit/2155ec9bda2956662b9a3699d50044664ad5ad38))
+* feat(emacs): Add new package `dired-git-info` ([`f476865`](../../commit/f4768651008445f1cf72db7adc1a81d4afa975d7))
 
 ## 9.2.0
 > Released Jul 21, 2025
