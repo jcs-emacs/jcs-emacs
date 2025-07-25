@@ -12,6 +12,7 @@
           ("M-<up>"    . dired-up-directory)
           ("M-<left>"  . dired-up-directory)
           ("M-<right>" . dired-find-file)
+          ("C-<"       . dired-gitignore-mode)
           ("C->"       . dired-omit-mode))
   :init
   (setq dired-dwim-target t  ; suggest a target for moving/copying intelligently
@@ -26,7 +27,9 @@
         ;; Screens are larger nowadays, we can afford slightly larger thumbnails
         image-dired-thumb-size 150
         ;; Kill the buffer when switch to new buffer.
-        dired-kill-when-opening-new-dired-buffer t))
+        dired-kill-when-opening-new-dired-buffer t)
+  :config
+  (dired-gitignore-global-mode 1))
 
 (use-package diredfl
   :hook (dired-mode . diredfl-mode))
