@@ -25,7 +25,9 @@
         ;; Ask whether destination dirs should get created when copying/removing files.
         dired-create-destination-dirs 'ask
         ;; Screens are larger nowadays, we can afford slightly larger thumbnails
-        image-dired-thumb-size 150))
+        image-dired-thumb-size 150
+        ;; Kill the buffer when switch to new buffer.
+        dired-kill-when-opening-new-dired-buffer t))
 
 (use-package diredfl
   :hook (dired-mode . diredfl-mode))
