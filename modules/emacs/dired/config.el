@@ -1,5 +1,7 @@
 ;;; emacs/dired/config.el  -*- lexical-binding: t; -*-
 
+(require 'autorevert)
+
 ;; XXX: Make list directories first!
 (setq ls-lisp-dirs-first t
       ls-lisp-use-insert-directory-program nil)
