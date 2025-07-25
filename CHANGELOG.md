@@ -13,6 +13,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * feat(vc): Add new package `diffview` ([`2155ec9`](../../commit/2155ec9bda2956662b9a3699d50044664ad5ad38))
 * feat(emacs): `auto-revert` is require by `dired` ([`77d26ca`](../../commit/77d26cab3e7eae19cd62dd771890b501407329a0))
 * feat(emacs): Add new package `dired-git-info` ([`f476865`](../../commit/f4768651008445f1cf72db7adc1a81d4afa975d7))
+* feat(emacs): Add new package `dired-gitignore` ([`77d26ca`](../../commit/77d26cab3e7eae19cd62dd771890b501407329a0))
 
 ## 9.2.0
 > Released Jul 21, 2025
