@@ -13,7 +13,8 @@
           ("M-<left>"  . dired-up-directory)
           ("M-<right>" . dired-find-file)
           ("C-<"       . dired-gitignore-mode)
-          ("C->"       . dired-omit-mode))
+          ("C->"       . dired-omit-mode)
+          ("<f2>"      . dired-efap))
   :init
   (setq dired-dwim-target t  ; suggest a target for moving/copying intelligently
         dired-hide-details-hide-symlink-targets nil
@@ -38,6 +39,11 @@
   :hook (dired-after-readin . dired-git-info-auto-enable)
   :init
   (setq dgi-auto-hide-details-p nil))
+
+(use-package dired-efap
+  :config
+  ;; Doesn't compatible to `dired-git-info'.
+  (jcs-add-hook 'dired-efap-mode-hooks (dired-git-info-mode -1)))
 
 (use-package nerd-icons-dired
   :hook (dired-mode . nerd-icons-dired-mode))
