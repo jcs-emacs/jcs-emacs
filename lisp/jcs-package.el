@@ -154,6 +154,7 @@
            diff-hl
            diffview
            diminish-buffer
+           dired-efap
            dired-git-info
            dired-gitignore
            diredfl
