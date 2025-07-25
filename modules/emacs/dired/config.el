@@ -12,7 +12,6 @@
           ("M-<up>"    . dired-up-directory)
           ("M-<left>"  . dired-up-directory)
           ("M-<right>" . dired-find-file)
-          ("C-h"       . dired-omit-mode)
           ("C->"       . dired-omit-mode))
   :init
   (setq dired-dwim-target t  ; suggest a target for moving/copying intelligently
