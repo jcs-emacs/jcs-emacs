@@ -14,6 +14,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * feat(emacs): `auto-revert` is require by `dired` ([`77d26ca`](../../commit/77d26cab3e7eae19cd62dd771890b501407329a0))
 * feat(emacs): Add new package `dired-git-info` ([`f476865`](../../commit/f4768651008445f1cf72db7adc1a81d4afa975d7))
 * feat(emacs): Add new package `dired-gitignore` ([`77d26ca`](../../commit/77d26cab3e7eae19cd62dd771890b501407329a0))
+* feat(emacs): Add new package `dired-efap` ([`cce8775`](../../commit/cce877589ae9bdc13881a64cc6e896caefef5911))
 
 ## 9.2.0
 > Released Jul 21, 2025
