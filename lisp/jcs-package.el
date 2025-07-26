@@ -169,6 +169,7 @@
            ecukes
            editorconfig-custom-majormode
            editorconfig-generate
+           ejson-mode
            el-mock
            eldoc-cmake
            eldoc-diffstat
