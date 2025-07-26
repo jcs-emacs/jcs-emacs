@@ -57,7 +57,7 @@ from this configuration.
 - C / C++ / C# / Clojure / COBOL / Coq / Crystal / CSS / CUDA / Cython
 - Dart / Dockerfile
 - Elixir / Elm / Emacs Lisp / Erlang
-- F# / Fountain
+- F# / Faust/ Fountain
 - GLSL / Go / Godot / Groovy
 - Haskell / Haxe / HLSL / HTML
 - Idris / INI
