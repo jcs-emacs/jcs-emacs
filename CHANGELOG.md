@@ -23,6 +23,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * feat(lang): Add module for GraphQL ([`b2cf8d3`](../../commit/b2cf8d38106e18c33a8501e4b5962b6ef69da30b))
 * feat(lisp): Add `psc-ide` for PureScript for IDE-like experience ([`f72f431`](../../commit/f72f4314429bda9bda7d4772aaf580c688d839ad))
 * feat(lisp): Add `psci` for PureScript ([`7c25aa5`](../../commit/7c25aa56a3ecb97270d1199f3dfa6bf536910029))
+* feat(lisp): Add `graphviz-dot-mode` for [Graphviz](https://graphviz.org/)
 
 ## 9.2.0
 > Released Jul 21, 2025
