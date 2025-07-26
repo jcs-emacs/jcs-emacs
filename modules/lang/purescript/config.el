@@ -12,6 +12,16 @@
 ;;
 
 (jcs-add-hook 'purescript-mode-hook
+  (company-fuzzy-backend-add-before 'company-psc-ide-backend 'company-dabbrev)
+
   ;; File Header
   (jcs-insert-header-if-valid '("[.]purs")
                               'jcs-insert-purescript-template))
+
+;;
+;; (@* "Extensions" )
+;;
+
+(use-package psc-ide
+  :hook (purescript-mode . psc-ide-mode)
+  :hook (flycheck-mode   . psc-ide-flycheck-setup))
