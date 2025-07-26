@@ -111,7 +111,8 @@
                   'regex)
       "Network")
 ;;; O
-     ((jcs-member name '("*execrun" "*quickrun") 'regex)
+     ((or (derived-mode-p 'compilation-mode 'comint-mode)
+          (jcs-member name '("*execrun" "*quickrun") 'regex))
       "Output")
      ((or (memq major-mode '( org-mode org-agenda-mode diary-mode))
           (jcs-member name '("[*]org") 'regex))
