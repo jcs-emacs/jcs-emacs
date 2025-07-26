@@ -16,6 +16,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * feat(emacs): Add new package `dired-gitignore` ([`77d26ca`](../../commit/77d26cab3e7eae19cd62dd771890b501407329a0))
 * feat(emacs): Add new package `dired-efap` ([`95961e1`](../../commit/95961e120635f66ad2ea8c18033c7b420743007b))
 * fix(emacs): `dired-efap` doesn't compatible to `dired-git-info`  ([`cce8775`](../../commit/cce877589ae9bdc13881a64cc6e896caefef5911))
+* feat: Add `jest-test-mode` ([`ad7b67f`](../../commit/ad7b67f3a8860e2b0f4fa232b18918a05fbfcf06))
 
 ## 9.2.0
 > Released Jul 21, 2025
