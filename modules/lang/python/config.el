@@ -88,5 +88,9 @@
     `(((kbd "RET") . jcs-py-return))))
 
 ;;
-;; (@* "Extension" )
+;; (@* "Extensions" )
 ;;
+
+(use-package python-pytest
+  :init
+  (setq python-pytest-preferred-project-manager 'project))
