@@ -114,6 +114,7 @@
            company-ghci
            company-glsl
            company-go
+           company-graphql
            company-kaomoji
            company-ledger
            company-lua
