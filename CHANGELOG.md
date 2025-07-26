@@ -23,7 +23,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * feat(lang): Add module for GraphQL ([`b2cf8d3`](../../commit/b2cf8d38106e18c33a8501e4b5962b6ef69da30b))
 * feat(lisp): Add `psc-ide` for PureScript for IDE-like experience ([`f72f431`](../../commit/f72f4314429bda9bda7d4772aaf580c688d839ad))
 * feat(lisp): Add `psci` for PureScript ([`7c25aa5`](../../commit/7c25aa56a3ecb97270d1199f3dfa6bf536910029))
-* feat(lisp): Add `graphviz-dot-mode` for [Graphviz][] ([`452f0b0`](../../commit/452f0b08d07561f02a7d8ae14b7a76687d369e9c))
 * feat(lang): Add module for [Graphviz][] language ([`ecd70ca`](../../commit/ecd70ca9dbf5c8012897695ef7da74667e94346a))
 * feat(lang): Add basic EJSON support ([`7d41e97`](../../commit/7d41e97eac3f9c70136d48b3536c3c711588864b))
 * feat(lang): Add module for Faust ([`99be441`](../../commit/99be441ee153a87036201c752c0b1386b759d6d8))
