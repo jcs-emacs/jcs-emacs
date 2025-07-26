@@ -197,6 +197,7 @@
            execrun
            expand-region
            fasm-mode
+           faust-mode
            fb2-reader
            feature-mode
            ff-guard
