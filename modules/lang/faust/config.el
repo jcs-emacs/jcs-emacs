@@ -4,15 +4,14 @@
 ;; (@* "Templates" )
 ;;
 
-(file-header-defins jcs-insert-erlang-template "erlang" "default.txt"
+(file-header-defins jcs-insert-faust-template "faust" "default.txt"
   "Template for Faust.")
 
 ;;
 ;; (@* "Hook" )
 ;;
 
-(jcs-add-hook 'erlang-mode-hook
+(jcs-add-hook 'faust-mode-hook
   ;; File Header
-  (jcs-insert-header-if-valid '("[.]erl"
-                                "[.]hrl")
-                              'jcs-insert-erlang-template))
+  (jcs-insert-header-if-valid '("[.]dsp")
+                              'jcs-insert-faust-template))
