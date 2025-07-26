@@ -88,3 +88,7 @@
 
   (jcs-key-local
     `(((kbd "RET")   . jcs-py-return))))
+
+;;
+;; (@* "Extension" )
+;;
