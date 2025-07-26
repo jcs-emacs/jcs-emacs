@@ -102,5 +102,5 @@ dist/
 *-autoloads.el
 *-pkg.el
 
-# macOS
+# OS generated
 .DS_Store
