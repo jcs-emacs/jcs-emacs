@@ -114,6 +114,7 @@
     (elm-mode                              . "lang/elm")
     (elisp-mode                            . "lang/emacs-lisp")
     (erlang                                . "lang/erlang")
+    (faust-mode                            . "lang/faust")
     (feature-mode                          . "lang/feature")
     (ess-r-mode                            . "lang/r")
     (fountain-mode                         . "lang/fountain")
