@@ -316,6 +316,7 @@
            jcs-screensaver
            jcs-template
            jenkinsfile-mode
+           jest-test-mode
            json-mode
            jsonnet-mode
            k8s-mode
