@@ -26,7 +26,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * feat(lisp): Add `graphviz-dot-mode` for [Graphviz][] ([`452f0b0`](../../commit/452f0b08d07561f02a7d8ae14b7a76687d369e9c))
 * feat(lang): Add module for [Graphviz][] language ([`ecd70ca`](../../commit/ecd70ca9dbf5c8012897695ef7da74667e94346a))
 * feat(lang): Add basic EJSON support ([`7d41e97`](../../commit/7d41e97eac3f9c70136d48b3536c3c711588864b))
-* feat(lisp): Add basic Faust support ([`5d134a4`](../../commit/5d134a440ee8c3793243f78fde168e93cbb9d7c8))
 * feat(lang): Add module for Faust ([`99be441`](../../commit/99be441ee153a87036201c752c0b1386b759d6d8))
 
 ## 9.2.0
