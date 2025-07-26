@@ -417,7 +417,6 @@
            proof-general
            protobuf-mode
            psc-ide
-           purescript-mode
            python-mode
            python-pytest
            qml-mode
