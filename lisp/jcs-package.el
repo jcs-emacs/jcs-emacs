@@ -166,6 +166,7 @@
            earthfile-mode
            easky
            ecukes
+           editorconfig-custom-majormode
            editorconfig-generate
            el-mock
            eldoc-cmake
