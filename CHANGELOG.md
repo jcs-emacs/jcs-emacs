@@ -20,7 +20,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * fix(ui): Add tab for `comint` and `compilation-mode` ([`30e19ba`](../../commit/30e19bab52f59c00dc74624c96bf48e193c5d6a8))
 * feat(lisp): Add `python-pytest` ([`9b480e6`](../../commit/9b480e6e5713d53c70ce14c3958ce2334931954b))
 * feat(lisp): Add `company-graphql` ([`d58ea91`](../../commit/d58ea91c4e1ebaf03669cbedea79848caabbf402))
-* feat(lang): Add module for GraphQL
+* feat(lang): Add module for GraphQL ([`b2cf8d3`](../../commit/b2cf8d38106e18c33a8501e4b5962b6ef69da30b))
 
 ## 9.2.0
 > Released Jul 21, 2025
