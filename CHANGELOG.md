@@ -21,7 +21,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * feat(lisp): Add `python-pytest` ([`9b480e6`](../../commit/9b480e6e5713d53c70ce14c3958ce2334931954b))
 * feat(lisp): Add `company-graphql` ([`d58ea91`](../../commit/d58ea91c4e1ebaf03669cbedea79848caabbf402))
 * feat(lang): Add module for GraphQL ([`b2cf8d3`](../../commit/b2cf8d38106e18c33a8501e4b5962b6ef69da30b))
-* feat(lisp): Add `psc-ide` for PureScript ([`f72f431`](../../commit/f72f4314429bda9bda7d4772aaf580c688d839ad))
+* feat(lisp): Add `psc-ide` for PureScript for IDE-like experience ([`f72f431`](../../commit/f72f4314429bda9bda7d4772aaf580c688d839ad))
 * feat(lisp): Add `psci` for PureScript ([`7c25aa5`](../../commit/7c25aa56a3ecb97270d1199f3dfa6bf536910029))
 
 ## 9.2.0
