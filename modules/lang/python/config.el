@@ -93,4 +93,6 @@
 
 (use-package python-pytest
   :init
-  (setq python-pytest-preferred-project-manager 'project))
+  (setq python-pytest-preferred-project-manager 'project
+        ;; Don't rely on Tree-sitter.
+        python-pytest-use-treesit nil))
