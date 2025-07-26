@@ -416,6 +416,7 @@
            prometheus-mode
            proof-general
            protobuf-mode
+           psc-ide
            purescript-mode
            python-mode
            python-pytest
