@@ -24,7 +24,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * feat(lisp): Add `psc-ide` for PureScript for IDE-like experience ([`f72f431`](../../commit/f72f4314429bda9bda7d4772aaf580c688d839ad))
 * feat(lisp): Add `psci` for PureScript ([`7c25aa5`](../../commit/7c25aa56a3ecb97270d1199f3dfa6bf536910029))
 * feat(lang): Add module for [Graphviz][] language ([`ecd70ca`](../../commit/ecd70ca9dbf5c8012897695ef7da74667e94346a))
-* feat(lang): Add basic EJSON support ([`7d41e97`](../../commit/7d41e97eac3f9c70136d48b3536c3c711588864b))
+* feat(lang): Add basic [EJSON][] support ([`7d41e97`](../../commit/7d41e97eac3f9c70136d48b3536c3c711588864b))
 * feat(lang): Add module for [Faust][] ([`99be441`](../../commit/99be441ee153a87036201c752c0b1386b759d6d8))
 
 ## 9.2.0
@@ -2400,5 +2400,6 @@ The implementation can be found in `jcs-helm-do-ag-this-file'` function.
 
 <!-- Links -->
 
+[EJSON]: https://github.com/Shopify/ejson
 [Faust]: https://faust.grame.fr/
 [Graphviz]: https://graphviz.org/
