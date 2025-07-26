@@ -18,6 +18,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * fix(emacs): `dired-efap` doesn't compatible to `dired-git-info` ([`cce8775`](../../commit/cce877589ae9bdc13881a64cc6e896caefef5911))
 * feat: Add `jest-test-mode` ([`ad7b67f`](../../commit/ad7b67f3a8860e2b0f4fa232b18918a05fbfcf06))
 * fix(ui): Add tab for `comint` and `compilation-mode` ([`30e19ba`](../../commit/30e19bab52f59c00dc74624c96bf48e193c5d6a8))
+* feat(lisp): Add `python-pytest` ([`9b480e6`](../../commit/9b480e6e5713d53c70ce14c3958ce2334931954b))
 
 ## 9.2.0
 > Released Jul 21, 2025
