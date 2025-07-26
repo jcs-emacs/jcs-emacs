@@ -198,7 +198,6 @@
            expand-region
            fasm-mode
            faustine
-           faust-mode
            fb2-reader
            feature-mode
            ff-guard
