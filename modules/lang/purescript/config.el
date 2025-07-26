@@ -25,3 +25,6 @@
 (use-package psc-ide
   :hook (purescript-mode . psc-ide-mode)
   :hook (flycheck-mode   . psc-ide-flycheck-setup))
+
+(use-package psci
+  :hook (purescript-mode . inferior-psci-mode))
