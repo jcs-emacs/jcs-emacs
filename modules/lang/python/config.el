@@ -85,7 +85,7 @@
                               :interactive t)
 
   (jcs-key-local
-    `(((kbd "RET")   . jcs-py-return))))
+    `(((kbd "RET") . jcs-py-return))))
 
 ;;
 ;; (@* "Extension" )
