@@ -418,6 +418,7 @@
            protobuf-mode
            purescript-mode
            python-mode
+           python-pytest
            qml-mode
            qob-mode
            qss-mode
