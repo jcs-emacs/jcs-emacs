@@ -1,5 +1,7 @@
 ;;; lang/faust/config.el  -*- lexical-binding: t; -*-
 
+(require 'faustine)
+
 ;;
 ;; (@* "Templates" )
 ;;
