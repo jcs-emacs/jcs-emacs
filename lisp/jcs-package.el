@@ -281,6 +281,7 @@
            goto-last-change
            goto-line-preview
            gptscript-mode
+           graphviz-dot-mode
            guard-lf
            haml-mode
            hammy
