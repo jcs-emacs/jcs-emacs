@@ -227,6 +227,8 @@
     ("\\.cpy\\'"              . cobol-mode)
 ;;; E
     ("\\.el'?\\'"             . emacs-lisp-mode)
+;;; F
+    ("\\.dsp'?\\'"            . faust-mode)
 ;;; G
     ("/\\..+ignore\\'"        . gitignore-mode)
 ;;; J
