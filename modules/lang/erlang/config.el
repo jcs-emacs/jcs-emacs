@@ -5,7 +5,7 @@
 ;;
 
 (file-header-defins jcs-insert-erlang-template "erlang" "default.txt"
-  "Template for Erlang Lisp.")
+  "Template for Erlang.")
 
 ;;
 ;; (@* "Hook" )
