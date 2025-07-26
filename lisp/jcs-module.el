@@ -121,6 +121,7 @@
     (fstar-mode                            . "lang/fstar")
     ((gdscript-mode gdshader-mode)         . "lang/godot")
     (graphql-mode                          . "lang/graphql")
+    (graphviz-dot-mode                     . "lang/graphviz")
     ((shader-mode glsl-mode hlsl-mode)     . "lang/shader")
     (sml-mode                              . "lang/sml")
     (go-mode                               . "lang/go")
