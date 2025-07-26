@@ -24,7 +24,6 @@
        ;; Make sure is not a tab.
        (jcs-current-char-equal-p " ")))
 
-
 (defun jcs-py-check-first-char-of-line-is-keyword-p ()
   "Check the first character of the current line the keyword line."
   (let (is-keyword)
@@ -36,7 +35,6 @@
       (when (jcs-py-is-python-keyword (word-at-point))
         (setq is-keyword t)))
     is-keyword))
-
 
 (defconst jcs-py-keywords
   '("class"
