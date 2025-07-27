@@ -430,6 +430,7 @@
            quelpa-use-package
            quickrun
            rainbow-csv
+           raku-mode
            region-occurrences-highlighter
            region-state
            repos-window
