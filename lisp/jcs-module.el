@@ -168,6 +168,7 @@
     (qml-mode                              . "lang/qml")
     (qss-mode                              . "lang/qss")
     (racket-mode                           . "lang/racket")
+    (raku-mode                             . "lang/raku")
     (restclient                            . "lang/rest")
     (ruby-mode                             . "lang/ruby")
     (rust-mode                             . "lang/rust")
