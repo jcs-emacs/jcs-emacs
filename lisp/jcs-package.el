@@ -231,6 +231,7 @@
            flycheck-ocaml
            flycheck-odin
            flycheck-package
+           flycheck-raku
            flycheck-relint
            flycheck-rust
            flycheck-swift
