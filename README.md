@@ -68,7 +68,7 @@ from this configuration.
 - Nim / Nix / Noir
 - Object Pascal (Delphi) / Objective-C / OCaml / Odin
 - P4 / Pascal / Perl / PHP / PowerShell / Properties / Python
-- R / Racket / Ruby / Rust
+- R / Racket / Raku / Ruby / Rust
 - Sass / Scala / SCSS / ShaderLab / Shell script / SQL / Swift
 - Terraform / TOML / TSX / TypeScript
 - Verilog / VHDL / Vimscript / Vue
