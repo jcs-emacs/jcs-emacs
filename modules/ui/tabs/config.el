@@ -64,6 +64,9 @@
                          "[*]google-gemini")
                   'regex)
       "AI")
+;;; B
+     ((memq major-mode '( Buffer-menu-mode))
+      "Buffer")
 ;;; C
      ((jcs-member name '("[*]Completions[*]"
                          "[*]company")
