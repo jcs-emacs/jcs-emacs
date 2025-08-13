@@ -52,7 +52,7 @@ jobs:
       with:
         version: ${{ matrix.emacs-version }}
 
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
 
     - name: Copy configuration files
       run: |
@@ -63,7 +63,7 @@ jobs:
       run: make startup
 
     - name: Checkout binaries repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
       with:
         repository: ${{ env.REPO_BIN }}
         persist-credentials: false
