@@ -325,6 +325,7 @@
            json-mode
            jsonnet-mode
            k8s-mode
+           kaomel
            kconfig-mode
            keypression
            kotlin-mode
