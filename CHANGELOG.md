@@ -27,6 +27,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * feat(lang): Add basic [EJSON][] support ([`7d41e97`](../../commit/7d41e97eac3f9c70136d48b3536c3c711588864b))
 * feat(lang): Add module for [Faust][] ([`99be441`](../../commit/99be441ee153a87036201c752c0b1386b759d6d8))
 * feat(lang): Add module for [Raku][] ([`9802b46`](../../commit/9802b464dbaba40cc83ee6bfe371a4b1d7995cf0))
+* feat(lang): Add type to eldoc in elisp ([`8fd0f6b`](../../commit/8fd0f6bad84b4e5149a983015f74447807c3a0f3))
 
 ## 9.2.0
 > Released Jul 21, 2025
