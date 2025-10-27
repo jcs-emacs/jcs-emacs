@@ -29,18 +29,30 @@
 
 (defun jcs--elisp-eldoc-var-docstring-with-value (callback &rest _)
   "Edited from the function `elisp-eldoc-var-docstring-with-value'."
-  (when-let ((cs (elisp--current-symbol)))
+  (when-let* ((cs (elisp--current-symbol)))
     (when (and (boundp cs)
                ;; nil and t are boundp!
                (not (null cs))
                (not (eq cs t)))
       (funcall callback
-               (format "%.100S\n%s"
-                       (symbol-value cs)
+               (concat (let* ((sym-val (symbol-value cs))
+                              (sym-val (format "%.100S" sym-val))
+                              (sym-val (s-chop-suffix "\n" sym-val)))
+                         (propertize sym-val
+                                     'face 'font-lock-preprocessor-face))
+                       (let* ((types (elenv-types cs))
+                              (types (mapcar (lambda (type)
+                                               (format ":%s" type))
+                                             types))
+                              (types-str (mapconcat #'elenv-2str types " ")))
+                         (concat "\n\n"
+                                 (propertize types-str
+                                             'face 'font-lock-builtin-face)))
                        (let* ((doc (documentation-property
                                     cs 'variable-documentation t))
                               (more (- (length doc) 1000)))
-                         (concat (propertize
+                         (concat "\n\n"
+                                 (propertize
                                   (jcs-fill-string
                                    (if (string= doc "nil")
                                        "Undocumented."
