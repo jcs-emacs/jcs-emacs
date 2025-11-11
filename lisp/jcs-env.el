@@ -278,6 +278,7 @@
             page-break-lines-mode
             tree-sitter-mode
             ts-fold-mode ts-fold-indicators-mode
+            foldvis-mode
             lsp-mode eglot--managed-mode
             whitespace-cleanup-mode)))
 
