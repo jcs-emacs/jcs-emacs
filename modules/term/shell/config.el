@@ -50,5 +50,6 @@
 
 (use-package comint-fold
   :init
-  (setq comint-fold-remap-tab nil)
+  (setq comint-fold-remap-tab nil
+        comint-fold-fringe-indicator nil)
   (comint-fold-mode 1))
