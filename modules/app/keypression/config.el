@@ -3,4 +3,4 @@
 (use-package keypression
   :config
   (nconc keypression-ignore-mouse-events
-         '(switch-frame menu-bar tool-bar tab-bar)))
+         '( switch-frame menu-bar tool-bar tab-bar)))
