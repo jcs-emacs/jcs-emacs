@@ -12,7 +12,11 @@
   (setq vertico-cycle t
         vertico-resize t
         vertico-scroll-margin 0
-        vertico-sort-function #'vertico-flx-sort-default))
+        vertico-sort-function #'vertico-flx-sort-default
+        ;; Don't mess up the order.
+        ;;
+        ;; See https://github.com/minad/vertico/discussions/585#discussioncomment-12878149
+        vertico-sort-history-duplicate 0))
 
 (use-package marginalia
   :hook (on-first-input . marginalia-mode)
