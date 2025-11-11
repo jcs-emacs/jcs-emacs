@@ -250,6 +250,7 @@
            flymake-shell
            flymake-yamllint
            fof
+           foldvis
            font-lock-ext
            forge
            fountain-mode
