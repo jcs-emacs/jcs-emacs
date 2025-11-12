@@ -477,6 +477,7 @@
            svelte-mode
            swift-mode
            terminal-here
+           tmux-mode
            toc-org
            togetherly
            toggle-profiler
