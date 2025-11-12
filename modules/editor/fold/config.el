@@ -11,11 +11,11 @@
                                 ;; Return the face of it's function.
                                 (line-reminder--get-face (line-number-at-pos pos t))))
   :config
-  (nconc foldvis-commands
-         '( vs-edit-fold-open
-            vs-edit-fold-open-all
-            vs-edit-fold-close
-            vs-edit-fold-close-all))
+  (elenv-uappend foldvis-commands
+    '( vs-edit-fold-open
+       vs-edit-fold-open-all
+       vs-edit-fold-close
+       vs-edit-fold-close-all))
 
   (require 'line-reminder)
   (setq line-reminder-add-line-function

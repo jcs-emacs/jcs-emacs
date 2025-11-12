@@ -235,9 +235,9 @@
   :init
   (setq auto-read-only-function #'read-only-mode)
   :config
-  (nconc auto-read-only-file-regexps
-         '("emacs/.*/lisp/"
-           "/[.]emacs[.]d/elpa/"))
+  (elenv-uappend auto-read-only-file-regexps
+    '("emacs/.*/lisp/"
+      "/[.]emacs[.]d/elpa/"))
   (jcs-advice-add 'auto-read-only--hook-find-file :override
     (unless (jcs-project-root) (auto-read-only))))
 
@@ -268,19 +268,19 @@
   :init
   (setq so-long-threshold 5000)
   :config
-  (nconc so-long-minor-modes
-         '( spell-fu-mode
-            eldoc-mode
-            highlight-numbers-mode
-            highlight-indent-guides-mode
-            hl-fill-column-mode
-            line-reminder-mode
-            page-break-lines-mode
-            tree-sitter-mode
-            ts-fold-mode ts-fold-indicators-mode
-            foldvis-mode
-            lsp-mode eglot--managed-mode
-            whitespace-cleanup-mode)))
+  (elenv-uappend so-long-minor-modes
+    '( spell-fu-mode
+       eldoc-mode
+       highlight-numbers-mode
+       highlight-indent-guides-mode
+       hl-fill-column-mode
+       line-reminder-mode
+       page-break-lines-mode
+       tree-sitter-mode
+       ts-fold-mode ts-fold-indicators-mode
+       foldvis-mode
+       lsp-mode eglot--managed-mode
+       whitespace-cleanup-mode)))
 
 ;;
 ;;; Startup

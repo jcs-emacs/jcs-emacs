@@ -16,9 +16,10 @@
       markdown-fontify-code-blocks-natively t
       markdown-fontify-whole-heading-line t)
 
-(nconc markdown-code-lang-modes'(("cs" . csharp-mode)
-                                 ("el" . emacs-lisp-mode)
-                                 ("cl" . lisp-mode)))
+(elenv-uappend markdown-code-lang-modes
+  '(("cs" . csharp-mode)
+    ("el" . emacs-lisp-mode)
+    ("cl" . lisp-mode)))
 
 ;;
 ;; (@* "Templates" )
