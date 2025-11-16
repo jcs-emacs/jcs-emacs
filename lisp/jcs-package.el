@@ -519,7 +519,8 @@
            winum
            yarn-mode
            yasnippet-snippets
-           yuck-mode)))
+           yuck-mode
+           zone-nyan)))
 
 (require 'elenv)
 (pkg-dm-install-all)

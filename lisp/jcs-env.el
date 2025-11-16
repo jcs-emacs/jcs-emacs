@@ -207,7 +207,10 @@
            after-find-file ff-find-the-other-file
            undo
            toggle-profiler
-           xref-backend-references)
+           xref-backend-references
+           zone
+           zone-leave-me-alone
+           zone-nyan-report-progress)
         message-clean-mode-minor-mode 'echo))
 
 (use-package msgu
