@@ -143,6 +143,9 @@
  'jcs-backward-word-capital 'jcs-forward-word-capital
  'beginning-of-line 'end-of-line)
 
+(advice-add 'eldoc-minibuffer-message :after #'echo-bar-update)
+
+;;
 ;;; Electric
 (setq-default electric-pair-inhibit-predicate 'electric-pair-default-inhibit)
 
