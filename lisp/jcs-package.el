@@ -71,6 +71,7 @@
            buffer-menu-filter
            buffer-move
            buttercup
+           cabal-mode
            caddyfile-mode
            calfw
            caml
