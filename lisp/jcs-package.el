@@ -60,6 +60,7 @@
            back-button
            balanced-windows
            banner-comment
+           base32
            basic-mode
            beancount
            better-scroll
