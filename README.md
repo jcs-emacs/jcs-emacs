@@ -286,7 +286,7 @@ kind of methods to support the maintainer you wish to.
 - *Execute Commands* - powered by [compile](https://www.emacswiki.org/emacs/CompilationMode).
 - *File Explorer* - powered by [treemacs](https://github.com/Alexander-Miller/treemacs).
 - *File Header* - powered by [file-header](https://github.com/alt-elpa/file-header).
-- *Folding/Unfolding* - powered by [ts-fold](https://github.com/jcs090218/ts-fold).
+- *Folding/Unfolding* - powered by [ts-fold](https://github.com/emacs-tree-sitter/ts-fold).
   - *Persistence Folding* - powered by [savefold.el](https://github.com/jcfk/savefold.el).
 - *Font* - powered by [use-ttf](https://github.com/elpa-host/use-ttf).
 - *Goto Declaration/Definition* - powered by [dumb-jump](https://github.com/jacktasia/dumb-jump).
