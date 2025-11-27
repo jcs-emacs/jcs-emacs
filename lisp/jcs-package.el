@@ -180,6 +180,7 @@
            eldoc-toml
            electric-cursor
            electric-indent-sexp
+           elf-mode
            elfeed
            elisp-def
            elisp-demos
