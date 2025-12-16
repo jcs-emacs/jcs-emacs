@@ -442,6 +442,7 @@
            responsive-window
            restart-emacs
            robots-txt-mode
+           ron-mode
            scad-mode
            scrollable-quick-peek
            scss-mode
