@@ -1,3 +1,6 @@
+# OS generated
+.DS_Store
+
 # settings
 /site-lisp/custom.el
 README.html
@@ -95,13 +98,10 @@ workspace/
 /GTAGS
 /TAGS
 
-# eask packages
-.eask/
-dist/
-
 # packaging
 *-autoloads.el
 *-pkg.el
 
-# OS generated
-.DS_Store
+# eask packages
+.eask/
+dist/
