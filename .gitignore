@@ -69,6 +69,7 @@ irony/
 librime/
 magithub/
 mspyls/
+org-persist/
 newsticker/
 persistent-scratch/
 persp-confs/
