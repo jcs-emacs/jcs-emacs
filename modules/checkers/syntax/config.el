@@ -23,7 +23,10 @@
   (message-clean-mode-add-echo-commands '( flycheck-display-error-messages))
   :config
   ;; Rerunning checks on every newline is a mote excessive.
-  (delq 'new-line flycheck-check-syntax-automatically))
+  (delq 'new-line flycheck-check-syntax-automatically)
+
+  ;; Refresh once; prevent some settings didn't get applied.
+  (jcs-advice-add 'flycheck-define-error-level :after (jcs-theme-refresh)))
 
 (use-package flymake
   :init
