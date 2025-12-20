@@ -28,7 +28,9 @@
   :init
   (setq racket-show-functions '( sideline-racket-show)))
 
-(use-package flymake-racket :hook (flymake-mode . flymake-racket-add-hook))
+(use-package flymake-racket
+  :hook ((scheme-mode . flymake-racket-add-hook)
+         (racket-mode . flymake-racket-add-hook)))
 
 (use-package sideline-racket
   :init

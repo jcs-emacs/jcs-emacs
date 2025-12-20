@@ -36,4 +36,4 @@
   :hook (flycheck-mode . gitlab-ci-mode-flycheck-enable))
 
 (use-package flymake-yamllint
-  :hook (flymake-mode . flymake-yamllint-setup))
+  :hook (yaml-mode . flymake-yamllint-setup))

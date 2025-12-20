@@ -22,4 +22,5 @@
 ;; (@* "Extensions" )
 ;;
 
-(use-package flymake-less :hook (flymake-mode . flymake-less-load))
+(use-package flymake-less
+  :hook (less-css-mode . flymake-less-load))

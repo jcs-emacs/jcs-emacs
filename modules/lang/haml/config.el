@@ -19,4 +19,5 @@
 ;; (@* "Extensions" )
 ;;
 
-(use-package flymake-haml :hook (flymake-mode . flymake-haml-load))
+(use-package flymake-haml
+  :hook (haml-mode . flymake-haml-load))

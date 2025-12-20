@@ -22,4 +22,5 @@
 ;; (@* "Extensions" )
 ;;
 
-(use-package flymake-php :hook (flymake-mode . flymake-php-load))
+(use-package flymake-php
+  :hook (php-mode . flymake-php-load))

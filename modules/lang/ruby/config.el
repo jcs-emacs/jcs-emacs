@@ -22,4 +22,5 @@
 ;; (@* "Extensions" )
 ;;
 
-(use-package flymake-ruby :hook (flymake-mode . flymake-ruby-load))
+(use-package flymake-ruby
+  :hook (ruby-mode . flymake-ruby-load))

@@ -22,4 +22,5 @@
 ;; (@* "Extensions" )
 ;;
 
-(use-package flymake-coffee :hook (flymake-mode . flymake-coffee-load))
+(use-package flymake-coffee
+  :hook (coffee-mode . flymake-coffee-load))

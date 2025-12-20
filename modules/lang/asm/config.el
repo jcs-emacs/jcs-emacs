@@ -124,4 +124,5 @@
 ;; (@* "Extensions" )
 ;;
 
-(use-package flymake-nasm :hook (flymake-mode . flymake-nasm-setup))
+(use-package flymake-nasm
+  :hook (nasm-mode . flymake-nasm-setup))

@@ -26,4 +26,5 @@
         geiser-repl-per-project-p t
         geiser-mode-eval-to-buffer-transformer #'sideline-geiser-show))
 
-(use-package flymake-guile :hook (flymake-mode . flymake-guile))
+(use-package flymake-guile
+  :hook (scheme-mode . flymake-guile))

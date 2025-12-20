@@ -24,4 +24,5 @@
 ;; (@* "Extensions" )
 ;;
 
-(use-package flymake-lua :hook (flymake-mode . flymake-lua-load))
+(use-package flymake-lua
+  :hook (lua-mode . flymake-lua-load))

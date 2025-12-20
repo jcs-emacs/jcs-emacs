@@ -68,4 +68,5 @@
 ;; (@* "Extensions" )
 ;;
 
-(use-package flymake-shell :hook (flymake-mode . flymake-shell-load))
+(use-package flymake-shell
+  :hook (sh-set-shell . flymake-shell-load))

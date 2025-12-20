@@ -66,4 +66,4 @@
   (setq impatient-showdown-flavor 'github))
 
 (use-package flymake-markdownlint
-  :hook (flymake-mode . flymake-markdownlint-setup))
+  :hook (markdown-mode . flymake-markdownlint-setup))
