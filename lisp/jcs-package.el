@@ -494,6 +494,7 @@
            try
            ts-docstr
            turbo-log
+           turepo
            typescript-mode
            typst-mode
            ueval
