@@ -46,7 +46,9 @@ Note this is opposite logic to the toggle mode function."
   :init
   (setq jcs-modeline-show-point t
         jcs-modeline-show-mode-icons t
-        jcs-modeline-show-mode-name t))
+        jcs-modeline-show-mode-name t
+        jcs-modeline-icon-scale-factor 0.85
+        jcs-modeline-icon-v-adjust 0.1))
 
 ;;
 ;; (@* "Echo Bar" )
