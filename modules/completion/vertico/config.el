@@ -34,7 +34,9 @@
 
 (when elenv-graphic-p
   (use-package nerd-icons-completion
-    :hook (vertico-mode . nerd-icons-completion-mode)))
+    :hook (vertico-mode . nerd-icons-completion-mode)
+    :init
+    (setq nerd-icons-completion-icon-size 0.85)))
 
 (use-package mbs
   :hook (vertico-mode . mbs-mode))
