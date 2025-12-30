@@ -8,7 +8,8 @@
         centaur-tabs-icon-type 'nerd-icons
         centaur-tabs-gray-out-icons 'buffer
         centaur-tabs-icons-prefix ""
-        centaur-tabs-icon-scale-factor 0.9
+        centaur-tabs-icon-scale-factor 0.8
+        centaur-tabs-icon-v-adjust 0.01
         centaur-tabs-set-modified-marker t
         centaur-tabs-enable-ido-completion nil
         centaur-tabs-buffer-groups-function #'jcs-tabs-buffer-groups
