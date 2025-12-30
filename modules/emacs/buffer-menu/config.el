@@ -116,6 +116,11 @@
   (setq centaur-tabs-groups-hash (make-hash-table :test 'equal)
         centaur-tabs-hide-hash (make-hash-table :test 'equal)))
 
+(use-package nerd-icons-buffer-menu
+  :init
+  (setq nerd-icons-buffer-menu-icon-scale-factor 0.8
+        nerd-icons-buffer-menu-icon-v-adjust 0.1))
+
 ;;
 ;; (@* "Core" )
 ;;
