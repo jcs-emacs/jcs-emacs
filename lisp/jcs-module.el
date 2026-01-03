@@ -117,6 +117,7 @@
     (faust-mode                            . "lang/faust")
     (feature-mode                          . "lang/feature")
     (ess-r-mode                            . "lang/r")
+    (fennel-mode                           . "lang/fennel")
     (fountain-mode                         . "lang/fountain")
     (fsharp-mode                           . "lang/fsharp")
     (fstar-mode                            . "lang/fstar")
