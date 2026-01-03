@@ -203,6 +203,7 @@
            faustine
            fb2-reader
            feature-mode
+           fennel-mode
            ff-guard
            file-info
            fish-mode
@@ -241,6 +242,7 @@
            flycheck-ziglint
            flymake-ansible-lint
            flymake-coffee
+           flymake-fennel
            flymake-guile
            flymake-haml
            flymake-less
