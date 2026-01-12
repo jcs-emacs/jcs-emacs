@@ -66,24 +66,33 @@
                                   (registers      . "nf-oct-database")
                                   (ls-files       . "nf-oct-file")
                                   (ls-directories . "nf-oct-file_directory"))
-        dashboard-heading-icon-height 1.0
-        dashboard-heading-icon-v-adjust 0.0
-        ;; Navigator
+        dashboard-heading-icon-height 0.9
+        dashboard-heading-icon-v-adjust 0.05
+        dashboard-icon-file-height 0.8
+        dashboard-icon-file-v-adjust 0.0
         dashboard-navigator-buttons
         `(((,(when elenv-graphic-p
-               (nerd-icons-faicon "nf-fa-github"))
+               (nerd-icons-faicon "nf-fa-github"
+                                  :height dashboard-heading-icon-height
+                                  :v-adjust dashboard-heading-icon-v-adjust))
             "Homepage" "Browse homepage"
             (lambda (&rest _) (browse-url jcs-homepage)))
            (,(when elenv-graphic-p
-               (nerd-icons-faicon "nf-fae-tools"))
+               (nerd-icons-faicon "nf-fae-tools"
+                                  :height dashboard-heading-icon-height
+                                  :v-adjust dashboard-heading-icon-v-adjust))
             "Settings" "Open custom file"
             (lambda (&rest _) (find-file custom-file)))
            (,(when elenv-graphic-p
-               (nerd-icons-mdicon "nf-md-update"))
+               (nerd-icons-mdicon "nf-md-update"
+                                  :height dashboard-heading-icon-height
+                                  :v-adjust dashboard-heading-icon-v-adjust))
             "Update" "Update JCS-Emacs"
             (lambda (&rest _) (jcs-update-config)))
            (,(if elenv-graphic-p
-                 (nerd-icons-faicon "nf-fa-question")
+                 (nerd-icons-faicon "nf-fa-question"
+                                    :height dashboard-heading-icon-height
+                                    :v-adjust dashboard-heading-icon-v-adjust)
                "?")
             "" "Help (?/h)"
             (lambda (&rest _) (help))
