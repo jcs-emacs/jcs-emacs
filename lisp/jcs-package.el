@@ -521,6 +521,7 @@
            vue-mode
            wat-mode
            web-mode
+           wgsl-mode
            whitespace-cleanup-mode
            whole-line-or-region
            winum
