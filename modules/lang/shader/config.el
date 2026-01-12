@@ -73,4 +73,4 @@
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]wgsl")
-                              'jcs-insert-hlsl-template))
+                              'jcs-insert-wgsl-template))
