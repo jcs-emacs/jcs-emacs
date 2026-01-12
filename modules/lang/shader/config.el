@@ -5,6 +5,7 @@
 (require 'shader-mode)
 (require 'glsl-mode)
 (require 'hlsl-mode)
+(require 'wgsl-mode)
 
 ;;
 ;; (@* "Templates" )
@@ -34,6 +35,9 @@
 (file-header-defins jcs-insert-hlsl-template "hlsl" "default.txt"
   "Header for HLSL file.")
 
+(file-header-defins jcs-insert-wgsl-template "wgsl" "default.txt"
+  "Header for WGSL file.")
+
 ;;
 ;; (@* "Hook" )
 ;;
@@ -62,4 +66,11 @@
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]fx" "[.]hlsl")
+                              'jcs-insert-hlsl-template))
+
+(jcs-add-hook 'wgsl-mode-hook
+  (modify-syntax-entry ?# "w")
+
+  ;; File Header
+  (jcs-insert-header-if-valid '("[.]wgsl")
                               'jcs-insert-hlsl-template))
