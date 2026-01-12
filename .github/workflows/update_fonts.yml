@@ -1,0 +1,32 @@
+name: Update Fonts
+
+on:
+  schedule:
+    - cron:  '0 * * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v6
+      with:
+        persist-credentials: false
+        fetch-depth: 0
+
+    - name: Update fonts
+      run: |
+        curl -fsSL https://github.com/rainstormstudio/nerd-icons.el/raw/refs/heads/main/fonts/NFM.ttf -o fonts/NFM.ttf
+
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v8
+      with:
+        title: 'Update submodules'
+        body: ''
+        commit-message: 'Update all submodules'
+        branch: update/fonts
+        delete-branch: true
