@@ -35,7 +35,8 @@ Note this is opposite logic to the toggle mode function."
 
 (use-package moody
   :init
-  (setq moody-mode-line-height 26
+  (setq moody-mode-line-height #'window-mode-line-height
+        moody-slant-function #'jcs-modeline-moody-arrow
         x-underline-at-descent-line t)
   :config
   ;; XXX For issue, https://github.com/tarsius/moody/pull/41
