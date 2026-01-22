@@ -22,3 +22,6 @@
 
 (use-package flycheck-nim
   :hook (flycheck-mode . (lambda (&rest _) (require 'flycheck-nim))))
+
+(use-package flycheck-nimsuggest
+  :hook (nimsuggest-mode . flycheck-nimsuggest-setup))

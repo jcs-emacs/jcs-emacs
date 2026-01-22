@@ -232,6 +232,7 @@
            flycheck-languagetool
            flycheck-ledger
            flycheck-nim
+           flycheck-nimsuggest
            flycheck-ocaml
            flycheck-odin
            flycheck-package
