@@ -88,7 +88,7 @@
       "Dired")
 ;;; L
      ((jcs-member name
-                  '("[*]lsp-" "[*]LSP[ ]+" "[*]eglot"
+                  '("[*]lsp-" "-lsp[*]" "[*]LSP[ ]+" "[*]eglot"
                     "[*][[:ascii:]]*ls[*:-]" "out[*]" "stderr[*]"
                     "[*]clang-" "[*]clangd"
                     "[*]csharp[*]"
