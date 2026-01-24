@@ -32,7 +32,7 @@
           "[*]Backtrace[*]"
           "[*]edebug" "[*]dap-" "[*]debug-"
           ;; `LSP'
-          "[*]lsp-" "[*]LSP[ ]+" "[*]eglot"
+          "[*]lsp-" "-lsp[*]" "[*]LSP[ ]+" "[*]eglot"
           "[*][[:ascii:]]*ls[*:-]" "out[*]" "stderr[*]"
           "[*]clang-" "[*]clangd"
           "[*]csharp[*]"
