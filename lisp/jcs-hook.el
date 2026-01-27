@@ -61,6 +61,7 @@
   (back-button-mode 1)
   (centaur-tabs-mode 1)
   (context-menu-mode 1)
+  (display-time-mode 1)
   (global-foldvis-mode 1)
   (global-hl-line-mode 1)
   (global-hl-todo-mode 1)
