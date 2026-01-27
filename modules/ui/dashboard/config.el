@@ -26,7 +26,7 @@
                  (centaur-tabs-move-current-tab-to-right)))))
   :init
   (setq dashboard-banner-logo-title
-        (concat "[J C S " (elenv-choose-char "•" "-") " E M A C S]")
+        (concat "[J C S " (if elenv-graphic-p "•" "-") " E M A C S]")
         dashboard-startupify-list '( dashboard-insert-banner
                                      dashboard-insert-newline
                                      dashboard-insert-banner-title
