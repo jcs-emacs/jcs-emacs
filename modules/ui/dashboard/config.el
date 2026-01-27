@@ -26,17 +26,17 @@
                  (centaur-tabs-move-current-tab-to-right)))))
   :init
   (setq dashboard-banner-logo-title
-        (concat "[J C S " (if elenv-graphic-p "•" "-") " E M A C S]")
-        dashboard-startupify-list '(dashboard-insert-banner
-                                    dashboard-insert-newline
-                                    dashboard-insert-banner-title
-                                    dashboard-insert-newline
-                                    dashboard-insert-navigator
-                                    dashboard-insert-newline
-                                    dashboard-insert-init-info
-                                    dashboard-insert-items
-                                    dashboard-insert-newline
-                                    dashboard-insert-footer)
+        (concat "[J C S " (elenv-choose-char "•" "-") " E M A C S]")
+        dashboard-startupify-list '( dashboard-insert-banner
+                                     dashboard-insert-newline
+                                     dashboard-insert-banner-title
+                                     dashboard-insert-newline
+                                     dashboard-insert-navigator
+                                     dashboard-insert-newline
+                                     dashboard-insert-init-info
+                                     dashboard-insert-items
+                                     dashboard-insert-newline
+                                     dashboard-insert-footer)
         dashboard-items '((ls-directories . 5)
                           (ls-files       . 5)
                           (recents        . 5)
