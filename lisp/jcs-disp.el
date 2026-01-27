@@ -58,7 +58,8 @@ Note this is opposite logic to the toggle mode function."
 (use-package echo-bar
   :init
   (setq echo-bar-right-padding (if elenv-graphic-p 0 1)
-        echo-bar-minibuffer nil)
+        echo-bar-minibuffer nil
+        echo-bar-update-interval 15)
   :config
   (jcs-advice-add 'echo-bar-update :after
     (when auto-scroll-bar-mode
