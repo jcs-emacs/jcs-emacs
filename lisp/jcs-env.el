@@ -318,6 +318,50 @@
   "Default theme name for this config.")
 
 ;;
+;;; Time
+(use-package time
+  :init
+  (setq display-time-day-and-date t
+        display-time-string-forms
+        '((if (and (not display-time-format)
+                   display-time-day-and-date)
+              (format-time-string "%a %b %e " now)
+            "")
+          (propertize
+           (format-time-string (or display-time-format
+                                   (if display-time-24hr-format "%H:%M" "%-I:%M%p"))
+                               now)
+           'face 'display-time-date-and-time
+           'help-echo (format-time-string "%a %b %e, %Y" now))
+          ;;load
+          (if mail
+              ;; Build the string every time to act on customization.
+              ;; :set-after doesn't help for `customize-option'.  I think it
+              ;; should.
+              (concat
+               " "
+               (propertize
+                display-time-mail-string
+                'display `(when (and display-time-use-mail-icon
+                                     (display-graphic-p))
+                            ,@display-time-mail-icon
+                            ,@(if (and display-time-mail-face
+                                       (memq (plist-get (cdr display-time-mail-icon)
+                                                        :type)
+                                             '(pbm xbm)))
+                                  (let ((bg (face-attribute display-time-mail-face
+                                                            :background)))
+                                    (if (stringp bg)
+                                        (list :background bg)))))
+                'face display-time-mail-face
+                'help-echo "You have new mail; mouse-2: Read mail"
+                'mouse-face 'mode-line-highlight
+                'local-map (make-mode-line-mouse-map 'mouse-2
+                                                     read-mail-command)))
+            "")
+          " ")))
+
+;;
 ;;; Trash
 (setq delete-by-moving-to-trash t)
 
