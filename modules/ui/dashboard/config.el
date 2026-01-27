@@ -18,12 +18,13 @@
                ;; Switch to scratch buffer for other window
                (save-selected-window
                  (switch-to-buffer-other-window (get-scratch-buffer-create)))
-               ;; Make sure dashboard buffer left most!
-               (centaur-tabs-move-current-tab-to-left)
-               ;; Make messages buffer to the right most.
-               (with-current-buffer (messages-buffer)
-                 (centaur-tabs-move-current-tab-to-right)
-                 (centaur-tabs-move-current-tab-to-right)))))
+               (when (featurep 'centaur-tabs)
+                 ;; Make sure dashboard buffer left most!
+                 (centaur-tabs-move-current-tab-to-left)
+                 ;; Make messages buffer to the right most.
+                 (with-current-buffer (messages-buffer)
+                   (centaur-tabs-move-current-tab-to-right)
+                   (centaur-tabs-move-current-tab-to-right))))))
   :init
   (setq dashboard-banner-logo-title
         (concat "[J C S " (if elenv-graphic-p "•" "-") " E M A C S]")
