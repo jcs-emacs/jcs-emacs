@@ -286,9 +286,7 @@
            gitlab-ci-mode-flycheck
            gl-conf-mode
            google-this
-           goto-char-preview
            goto-last-change
-           goto-line-preview
            gptscript-mode
            graphviz-dot-mode
            guard-lf
