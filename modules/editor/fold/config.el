@@ -1,9 +1,5 @@
 ;;; editor/fold/config.el  -*- lexical-binding: t; -*-
 
-(use-package ts-fold
-  :hook (tree-sitter-after-on . ts-fold-mode)
-  :hook (tree-sitter-after-on . ts-fold-line-comment-mode))
-
 (use-package foldvis
   :init
   (setq foldvis-fringe 'left-fringe
@@ -30,6 +26,10 @@
   (jcs-with-eval-after-load 'hideif   (savefold-hide-ifdef-mode 1))
   (jcs-with-eval-after-load 'org      (savefold-org-mode 1))
   (jcs-with-eval-after-load 'ts-fold  (savefold-ts-fold-mode 1)))
+
+(use-package ts-fold
+  :hook (tree-sitter-after-on . ts-fold-mode)
+  :hook (tree-sitter-after-on . ts-fold-line-comment-mode))
 
 (use-package fold-this
   :init
