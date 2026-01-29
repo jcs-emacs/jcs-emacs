@@ -62,7 +62,6 @@
   (centaur-tabs-mode 1)
   (context-menu-mode 1)
   (display-time-mode 1)
-  (global-foldvis-mode 1)
   (global-hl-line-mode 1)
   (global-hl-todo-mode 1)
   (indent-control-mode 1)
@@ -105,6 +104,7 @@
   (npm-global-mode 1)
   (global-tree-sitter-mode 1)
   (global-so-long-mode 1)
+  (global-foldvis-mode 1)  ; Must load after `tree-sitter-mode'.
   (require 'lsp-mode))
 
 (jcs-add-hook 'on-first-project-hook
