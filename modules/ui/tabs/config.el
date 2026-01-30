@@ -80,8 +80,6 @@
       "Completion")
      ((jcs-member name '("[*]Flycheck" "[*]Flymake") 'regex)
       "Checker")
-     ((jcs-member name '("*cider") 'prefix)
-      "Cider")
      ((jcs-member name '("[*]jcs") 'regex)
       "Config")
 ;;; D
@@ -148,6 +146,10 @@
                          "*esup")
                   'regex)
       "Profiler")
+;;; R
+     ((jcs-member name '("*cider" "*sly")
+                  'prefix)
+      "REPL")
 ;;; S
      ((or (derived-mode-p 'shell-mode 'eshell-mode)
           (jcs-member name
@@ -157,8 +159,6 @@
       "Shell")
      ((member name '("*snow*"))
       "Screen Saver")
-     ((jcs-member name '("*sly") 'prefix)
-      "Sly")
 ;;; T
      ((or
        (memq major-mode '( checkdoc-output-mode))
