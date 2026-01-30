@@ -66,8 +66,13 @@
                   'regex)
       "AI")
 ;;; B
-     ((memq major-mode '( Buffer-menu-mode))
+     ((or (memq major-mode '( Buffer-menu-mode))
+          (derived-mode-p 'dired-mode))
       "Buffer")
+     ((jcs-member name '("[*]eww"
+                         "[*]elfeed-")
+                  'regex)
+      "Browser")
 ;;; C
      ((jcs-member name '("[*]Completions[*]"
                          "[*]company")
@@ -77,16 +82,26 @@
       "Checker")
      ((jcs-member name '("*cider") 'prefix)
       "Cider")
+     ((jcs-member name '("[*]jcs") 'regex)
+      "Config")
 ;;; D
+     ((memq major-mode '( sqlite-mode))
+      "Database")
      ((jcs-member name '("[*]Backtrace[*]"
                          "[*]edebug" "[*]dap-" "[*]debug-")
                   'regex)
-      "Debugger")
-     ((memq major-mode '( diffview-mode))
-      "Diff")
-     ((derived-mode-p 'dired-mode)
-      "Dired")
+      "Debugging")
+;;; H
+     ((or (derived-mode-p 'help-mode)
+          (jcs-member name '("[*]Bug Help[*]"
+                             "[*]helpful" "[*]suggest[*]")
+                      'regex))
+      "Debugging")
 ;;; L
+     ((jcs-member name
+                  '("[*]Warnings[*]")
+                  'regex)
+      "Log")
      ((jcs-member name
                   '("[*]lsp-" "-lsp[*]" "[*]LSP[ ]+" "[*]eglot"
                     "[*][[:ascii:]]*ls[*:-]" "out[*]" "stderr[*]"
@@ -108,10 +123,15 @@
 ;;; M
      ((memq major-mode '( message-mode mu4e-compose-mode))
       "Mail")
-     ((memq major-mode '( image-mode)) "Media")
+     ((memq major-mode '( image-mode))
+      "Media")
+     ((jcs-member name '("[*]emp")
+                  'regex)
+      "Music")
 ;;; N
      ((jcs-member name '("[*]httpd[*]"
-                         "[*]HTTP Response[*]")
+                         "[*]HTTP Response[*]"
+                         "[*]Ping")
                   'regex)
       "Network")
 ;;; O
@@ -124,33 +144,59 @@
 ;;; P
      ((jcs-member name '("[*]CPU-Profiler-Report"
                          "[*]Memory-Profiler-Report"
+                         "[*]Memory Report"
                          "*esup")
                   'regex)
       "Profiler")
 ;;; S
-     ((derived-mode-p 'shell-mode 'eshell-mode)
+     ((or (derived-mode-p 'shell-mode 'eshell-mode)
+          (jcs-member name
+                      '("[*]Async Shell Command[*]"
+                        "[*]shell" "[*]eshell" "bshell<")
+                      'regex))
       "Shell")
      ((member name '("*snow*"))
       "Screen Saver")
      ((jcs-member name '("*sly") 'prefix)
       "Sly")
 ;;; T
-     ((jcs-member name '("[*]ert[*]"
-                         "[*]indent-lint")
-                  'regex)
+     ((or
+       (memq major-mode '( checkdoc-output-mode))
+       (jcs-member name
+                   '("[*]Checkdoc " "[*]Elint[*]" "[*]Package-Lint[*]"
+                     "[*]relint[*]" "[*]indent-lint"
+                     "[*]ert[*]"
+                     "[*]Test SHA[*]")
+                   'regex))
       "Testing")
+     ((jcs-member name '("[*]wclock[*]")
+                  'regex)
+      "Time")
      ((jcs-member name '("[*]tree-sitter"
                          "tree-sitter-tree:")
                   'regex)
       "Tree-sitter")
 ;;; U
-     ((memq major-mode '( grep-mode))
+     ((or (memq major-mode '( grep-mode
+                              list-environment-mode
+                              list-unicode-display-mode))
+          (jcs-member name '("[*]Process List[*]"
+                             "[*]ASCII[*]"
+                             "[*]Free keys[*]"
+                             "[*]RE-Builder"
+                             "[*]Most used words[*]"
+                             "[*]manage-minor-mode"
+                             "[*]Local Variables[*]"
+                             "[*]Kill Ring[*]"
+                             "[*]timer")
+                      'regex))
       "Utilities")
 ;;; V
-     ((jcs-member name '("[*]vc"
-                         "[*]VC-history[*]"
-                         "magit[-]*[[:ascii:]]*[:]")
-                  'regex)
+     ((or (memq major-mode '( diffview-mode))
+          (jcs-member name '("[*]vc"
+                             "[*]VC-history[*]"
+                             "magit[-]*[[:ascii:]]*[:]")
+                      'regex))
       "Version Control")
 ;;; X
      ((jcs-member name '("[*]xref") 'regex)
