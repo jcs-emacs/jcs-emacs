@@ -104,7 +104,6 @@
   (npm-global-mode 1)
   (global-tree-sitter-mode 1)
   (global-so-long-mode 1)
-  (global-foldvis-mode 1)  ; Must load after `tree-sitter-mode'.
   (require 'lsp-mode))
 
 (jcs-add-hook 'on-first-project-hook
