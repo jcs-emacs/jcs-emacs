@@ -28,6 +28,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * feat(lang): Add module for [Faust][] ([`99be441`](../../commit/99be441ee153a87036201c752c0b1386b759d6d8))
 * feat(lang): Add module for [Raku][] ([`9802b46`](../../commit/9802b464dbaba40cc83ee6bfe371a4b1d7995cf0))
 * feat(lang): Add type to eldoc in elisp ([`8fd0f6b`](../../commit/8fd0f6bad84b4e5149a983015f74447807c3a0f3))
+* fix(ui): Make `highlight-indent-guides` work with `whitespace` ([`614b365`](../../commit/614b3659a933883f5f0659e7f2d477964017182d))
 
 ## 9.2.0
 > Released Jul 21, 2025
