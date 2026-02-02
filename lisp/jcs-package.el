@@ -507,9 +507,9 @@
            vc-refresh
            vertico-flx
            vimrc-mode
-           visual-regexp
-           vs-comment-return
            visual-basic-mode
+           visual-regexp-steroids
+           vs-comment-return
            vs-dark-theme
            vs-edit-mode
            vs-electric-spacing
