@@ -5,16 +5,23 @@
   (setq highlight-indent-guides-method 'character
         highlight-indent-guides-character (elenv-choose-char ?\┊ ?\|)
         highlight-indent-guides-responsive 'top
-        highlight-indent-guides-suppress-auto-error t))
-
-(jcs-add-hook '( whitespace-mode-hook)
-  (cond (whitespace-mode
-         (when (and highlight-indent-guides-mode
-                    indent-tabs-mode)
-           (highlight-indent-guides-mode -1)))
-        (t
-         (when display-fill-column-indicator-mode
-           (highlight-indent-guides-mode 1)))))
+        highlight-indent-guides-suppress-auto-error t)
+  :config
+  ;; Make `highlight-indent-guides' work with `whitespace-mode'.
+  (jcs-add-hook '( whitespace-mode-hook)
+    (cond (whitespace-mode
+           (when (and highlight-indent-guides-mode
+                      indent-tabs-mode)
+             (highlight-indent-guides-mode -1)))
+          (t
+           ;; XXX: The `display-fill-column-indicator-mode' is used to
+           ;; check if `highlight-indent-guides' was previously being activated.
+           ;;
+           ;; The `display-fill-column-indicator-mode' was chosen since it
+           ;; always (most likely) going to be activated with
+           ;; `highlight-indent-guides', see the file `jcs-hook.el'.
+           (when display-fill-column-indicator-mode
+             (highlight-indent-guides-mode 1))))))
 
 ;;
 ;; (@* "Faces" )
