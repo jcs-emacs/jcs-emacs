@@ -7,6 +7,15 @@
         highlight-indent-guides-responsive 'top
         highlight-indent-guides-suppress-auto-error t))
 
+(jcs-add-hook '( whitespace-mode-hook)
+  (cond (whitespace-mode
+         (when (and highlight-indent-guides-mode
+                    indent-tabs-mode)
+           (highlight-indent-guides-mode -1)))
+        (t
+         (when display-fill-column-indicator-mode
+           (highlight-indent-guides-mode 1)))))
+
 ;;
 ;; (@* "Faces" )
 ;;
