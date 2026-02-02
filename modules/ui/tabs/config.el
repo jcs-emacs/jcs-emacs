@@ -81,7 +81,7 @@
      ((jcs-member name '("[*]Compile-Log[*]" "[*]Native-compile-Log[*]"
                          "[*]Async-native-compile-Log[*]")
                   'regex)
-      "Completion")
+      "Compile")
      ((jcs-member name '("[*]Flycheck" "[*]Flymake") 'regex)
       "Checker")
      ((jcs-member name '("[*]jcs") 'regex)
