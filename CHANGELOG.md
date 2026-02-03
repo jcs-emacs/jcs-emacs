@@ -8,6 +8,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 9.3.0 (Unreleased)
 > Released N/A
 
+* N/A
+
+## 9.3.0
+> Released Feb 04, 2026
+
 * feat(lisp): Add `nerd-icons` for `xref` ([`ae67ce4`](../../commit/ae67ce48a7466ab676f1bff5f6f048482e04b395))
 * fix(module): Load diff config for `diff-mode` ([`2372ebf`](../../commit/2372ebf5f69baf445cfcc1024bd9497dfe09c5f7))
 * feat(vc): Add new package `diffview` ([`2155ec9`](../../commit/2155ec9bda2956662b9a3699d50044664ad5ad38))
