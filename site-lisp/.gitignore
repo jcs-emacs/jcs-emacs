@@ -2,5 +2,5 @@
 .DS_Store
 
 # settings
-/custom.el
-/config.el
+custom.el
+config.el
