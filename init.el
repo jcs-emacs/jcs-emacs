@@ -96,7 +96,11 @@
 (require 'jcs-key)
 
 ;;; Customize
-(load (expand-file-name "~/.emacs.jcs.d/init.el") t t)
+(mapc
+ (lambda (file)
+   (load (concat elenv-user-home-dir file) t t))
+ '(".emacs.jcs.d/init.el"
+   ".config/.emacs.jcs.d/init.el"))
 
 ;; Local Variables:
 ;; coding: utf-8
