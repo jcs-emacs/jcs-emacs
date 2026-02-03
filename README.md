@@ -131,6 +131,7 @@ without having to get used to a new IDE.
 
 Here is the list of few essential and recent changes to this configuration.
 
+- `9.3.0` - Move user configuration files to its own directory.
 - `9.1.0` - Replace package `topsy` with `breadcrumb-mode` for better UX
 - `9.0.1` - Add AI support and replace a few external packages with built-in.
 - `9.0.0` - Support more languages and add debugging utilities
