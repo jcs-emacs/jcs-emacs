@@ -2,8 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
-(setq user-full-name "Jen-Chieh Shen"
-      user-mail-address "jcs090218@gmail.com")
+(setq user-full-name "<Your Name>"
+      user-mail-address "<your.email@domain.com>")
 
 ;; Put your configuration code here ...
 
