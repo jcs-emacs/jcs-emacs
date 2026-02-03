@@ -69,7 +69,8 @@
       (append (mapcar
                (lambda (dir) (concat user-emacs-directory dir))
                '("lisp/"
-                 "lisp/lib/"))
+                 "lisp/lib/"
+                 "site-lisp/"))
               load-path))
 
 ;;; Initialize
@@ -95,7 +96,7 @@
 (require 'jcs-key)
 
 ;;; Customize
-(load (concat user-emacs-directory "site-lisp/config.el") t t)
+(load (expand-file-name "~/.emacs.jcs/init.el") t t)
 
 ;; Local Variables:
 ;; coding: utf-8
