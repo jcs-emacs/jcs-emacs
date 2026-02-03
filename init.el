@@ -96,7 +96,7 @@
 (require 'jcs-key)
 
 ;;; Customize
-(load (expand-file-name "~/.emacs.jcs/init.el") t t)
+(load (expand-file-name "~/.emacs.jcs.d/init.el") t t)
 
 ;; Local Variables:
 ;; coding: utf-8

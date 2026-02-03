@@ -329,7 +329,7 @@ kind of methods to support the maintainer you wish to.
 ## 🧰 Write your own customization
 
 You can customize the configuration by editing the file located at
-`~/.emacs.jcs/init.el`. You should put all your own customize code
+`~/.emacs.jcs.d/init.el`. You should put all your own customize code
 there, then other than that are the core files.
 
 ```elisp
