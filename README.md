@@ -141,7 +141,6 @@ Here is the list of few essential and recent changes to this configuration.
 - `8.1.0` - Remove config tabify/untabify save, and replace it with `whitespace-cleanup-mode`.
 - `8.0.1` - Switch from `ivy` to `vertico`.
 - `8.0.0` - Move everything to `.emacs.d`. ([#32](https://github.com/jcs-emacs/jcs-emacs/pull/32))
-- `7.1.0` - Replace `quelpa` with `github-elpa`.
 
 ## 💾 Installation
 
