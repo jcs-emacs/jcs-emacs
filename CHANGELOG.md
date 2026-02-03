@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
-## 9.2.1 (Unreleased)
+## 9.3.0 (Unreleased)
 > Released N/A
 
 * feat(lisp): Add `nerd-icons` for `xref` ([`ae67ce4`](../../commit/ae67ce48a7466ab676f1bff5f6f048482e04b395))
@@ -29,6 +29,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * feat(lang): Add module for [Raku][] ([`9802b46`](../../commit/9802b464dbaba40cc83ee6bfe371a4b1d7995cf0))
 * feat(lang): Add type to eldoc in elisp ([`8fd0f6b`](../../commit/8fd0f6bad84b4e5149a983015f74447807c3a0f3))
 * fix(ui): Make `highlight-indent-guides` work with `whitespace` ([`614b365`](../../commit/614b3659a933883f5f0659e7f2d477964017182d))
+* feat: Move user configuration to its own directory ([`f794908`](../../commit/f79490813fdd4b52edda1530e9ea08b59133a3da))
 
 ## 9.2.0
 > Released Jul 21, 2025
