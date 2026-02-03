@@ -35,7 +35,7 @@
 [![Mode](https://github.com/jcs-emacs/jcs-emacs/actions/workflows/mode.yml/badge.svg)](https://github.com/jcs-emacs/jcs-emacs/actions/workflows/mode.yml)
 [![Packages](https://github.com/jcs-emacs/jcs-emacs/actions/workflows/packages.yml/badge.svg)](https://github.com/jcs-emacs/jcs-emacs/actions/workflows/packages.yml)
 
-This is Jen-Chieh Shen's emacs configuration started from [Casey Muratori](https://github.com/cmuratori)'s
+This is Jen-Chieh Shen's emacs configuration started from [Casey Muratori][]'s
 Emacs configuration. It has been repeatedly utilized and modified
 since 2015 and is now very different from his configuration.
 
@@ -329,8 +329,26 @@ kind of methods to support the maintainer you wish to.
 ## 🧰 Write your own customization
 
 You can customize the configuration by editing the file located at
-`~/.emacs.d/site-lisp/config.el`. You should put all your own customize code
+`~/.emacs.jcs/init.el`. You should put all your own customize code
 there, then other than that are the core files.
+
+```elisp
+;;; init.el --- Your own configuration  -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
+
+... your code here ...
+
+;;; init.el ends here
+```
+
+If you intend to make more substantial customizations, it’s
+best to fork the repository and modify the configuration to
+suit your needs. Be sure to regularly merge updates from this
+repo to keep your setup compatible with the latest package and
+Emacs releases.
+
+*💡 Please note that I’m unable to provide support for customized versions of this configuration.*
 
 ## ❓ FAQ
 
@@ -373,3 +391,10 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 See [`LICENSE`](./LICENSE) for details.
+
+
+<!-- Links -->
+
+[Emacs]: https://www.gnu.org/software/emacs/
+
+[Casey Muratori]: https://github.com/cmuratori
