@@ -211,8 +211,7 @@
            undo
            toggle-profiler
            xref-backend-references
-           zone zone-leave-me-alone zone-nyan-report-progress
-           mail-send)
+           zone zone-leave-me-alone zone-nyan-report-progress)
         msg-clean-minor-mode 'echo))
 
 (use-package msgu
