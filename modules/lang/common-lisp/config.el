@@ -11,7 +11,7 @@
 ;;
 
 (msg-clean-add-echo-commands '( sly-message
-                                         sly-overlay-eval-defun))
+                                sly-overlay-eval-defun))
 
 (elenv-when-exec "sbcl" nil
   (setq inferior-lisp-program (shell-quote-argument value)))
