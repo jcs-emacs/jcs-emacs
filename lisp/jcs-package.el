@@ -374,13 +374,13 @@
            merlin-eldoc
            mermaid-mode
            meson-mode
-           msg-clean
            meta-view
            minimap
            mint-mode
            moom
            most-used-words
            move-text
+           msg-clean
            multi-shell
            nasm-mode
            nerd-icons-archive
