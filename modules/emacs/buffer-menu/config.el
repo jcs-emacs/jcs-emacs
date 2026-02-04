@@ -96,7 +96,8 @@
                                     "sqlite-mode"
                                     "checkdoc-output-mode"
                                     "proof-splash-mode"
-                                    "diffview-mode")))
+                                    "diffview-mode"
+                                    "message-mode" "mu4e-compose-mode")))
 
 ;;
 ;; (@* "Hook" )
