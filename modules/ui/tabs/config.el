@@ -32,8 +32,12 @@
 ;;
 ;;; Buffer Groups
 
-(defvar jcs-tabs-line--group-cache (make-hash-table :test #'equal)
+(defvar jcs-tabs-line--group-cache nil
   "Cache for buffer groups.")
+
+(jcs-add-hook '( centaur-tabs-mode-hook)
+  (setq jcs-tabs-line--group-cache (make-hash-table :test #'equal))
+  (ic "clean"))
 
 (defun jcs-tabs-clear-dead-buffers ()
   "Remove all dead buffers from group cache."
@@ -93,6 +97,10 @@
                          "[*]edebug" "[*]dap-" "[*]debug-")
                   'regex)
       "Debugging")
+;;; E
+     ((memq major-mode '( message-mode
+                          mu4e-compose-mode))
+      "Email")
 ;;; H
      ((or (derived-mode-p 'help-mode)
           (jcs-member name '("[*]Bug Help[*]"
