@@ -193,7 +193,7 @@
 (use-package msg-clean
   :init
   (setq msg-clean-mute-commands '( push-mark set-mark-command
-                                            y-or-n-p)
+                                   y-or-n-p)
         msg-clean-echo-commands
         '( save-buffer
            mwheel-scroll
@@ -211,9 +211,8 @@
            undo
            toggle-profiler
            xref-backend-references
-           zone
-           zone-leave-me-alone
-           zone-nyan-report-progress)
+           zone zone-leave-me-alone zone-nyan-report-progress
+           mail-send)
         msg-clean-minor-mode 'echo))
 
 (use-package msgu
