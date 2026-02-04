@@ -1,6 +1,6 @@
 ;;; emacs/re-builder/config.el  -*- lexical-binding: t; -*-
 
-(message-clean-mode-add-echo-commands
+(msg-clean-add-echo-commands
  '( reb-update-overlays reb-next-match reb-prev-match))
 
 (jcs-add-hook 'reb-mode-hook  ; Re-Builder

@@ -10,7 +10,7 @@
 ;; (@* "Settings" )
 ;;
 
-(message-clean-mode-add-echo-commands '( sly-message
+(msg-clean-add-echo-commands '( sly-message
                                          sly-overlay-eval-defun))
 
 (elenv-when-exec "sbcl" nil

@@ -21,7 +21,7 @@
         ;; Make TCP connection is already slow; only try to connect once
         lsp-tcp-connection-timeout 0.01)
 
-  (message-clean-mode-add-echo-commands
+  (msg-clean-add-echo-commands
    '( lsp--message lsp--send-request-async lsp--apply-text-edits))
 
   (recentf-excl-add-commands '( lsp-find-references

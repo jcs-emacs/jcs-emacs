@@ -10,7 +10,7 @@
   :init
   (setq execrun-kill-buffer-function #'jcs-maybe-kill-current-buffer)
 
-  (message-clean-mode-add-echo-commands '( execrun-compile)))
+  (msg-clean-add-echo-commands '( execrun-compile)))
 
 (use-package quickrun
   :hook (quickrun--mode . (lambda (&rest _)

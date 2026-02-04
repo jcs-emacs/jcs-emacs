@@ -2,7 +2,7 @@
 
 (require 'compile)
 
-(message-clean-mode-add-echo-commands '( shell-dirstack-message))
+(msg-clean-add-echo-commands '( shell-dirstack-message))
 
 ;;
 ;; (@* "Hook" )

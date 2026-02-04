@@ -374,7 +374,7 @@
            merlin-eldoc
            mermaid-mode
            meson-mode
-           message-clean-mode
+           msg-clean
            meta-view
            minimap
            mint-mode

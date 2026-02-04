@@ -20,7 +20,7 @@
   ;; Replace with `sideline-flycheck'
   (setq flycheck-display-errors-function nil)
 
-  (message-clean-mode-add-echo-commands '( flycheck-display-error-messages))
+  (msg-clean-add-echo-commands '( flycheck-display-error-messages))
   :config
   ;; Rerunning checks on every newline is a mote excessive.
   (delq 'new-line flycheck-check-syntax-automatically)

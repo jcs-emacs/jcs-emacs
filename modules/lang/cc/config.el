@@ -6,7 +6,7 @@
 ;; (@* "Settings" )
 ;;
 
-(message-clean-mode-add-mute-commands '( company-clang--handle-error))
+(msg-clean-add-mute-commands '( company-clang--handle-error))
 
 ;;
 ;; (@* "Keys" )

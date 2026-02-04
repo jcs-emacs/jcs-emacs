@@ -334,7 +334,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Limit lsp message to display in `*Messages*` buffer.
 * Add file name when do `ffap` on `minibuffer` and `vertico`. ([`1df9e1b`](../../commit/1df9e1b4467423dc278ac4963cfd9d42e8d53d28))
 * Add support for HLSL language.
-* Add new package `message-clean-mode`.
+* Add new package `msg-clean`.
 * Add new package `buffer-menu-project`.
 * Add new package `buffer-menu-filter`.
 * Default select first candidate (highest score) after sorting while using minibuffer completion. ([`eb6486a`](../../commit/eb6486a3a9031421127fda03f89ede01d38ba409))

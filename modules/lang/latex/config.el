@@ -20,7 +20,7 @@
       ;; Just save, don't ask before each compilation.
       TeX-save-query nil)
 
-(message-clean-mode-add-echo-commands '(TeX-auto-list-information))
+(msg-clean-add-echo-commands '(TeX-auto-list-information))
 
 ;;
 ;; (@* "Templates" )

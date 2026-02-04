@@ -190,11 +190,11 @@
 
 ;;
 ;;; Messages
-(use-package message-clean-mode
+(use-package msg-clean
   :init
-  (setq message-clean-mode-mute-commands '( push-mark set-mark-command
+  (setq msg-clean-mute-commands '( push-mark set-mark-command
                                             y-or-n-p)
-        message-clean-mode-echo-commands
+        msg-clean-echo-commands
         '( save-buffer
            mwheel-scroll
            previous-line next-line
@@ -214,7 +214,7 @@
            zone
            zone-leave-me-alone
            zone-nyan-report-progress)
-        message-clean-mode-minor-mode 'echo))
+        msg-clean-minor-mode 'echo))
 
 (use-package msgu
   :init

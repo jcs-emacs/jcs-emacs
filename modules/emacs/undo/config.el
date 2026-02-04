@@ -18,6 +18,6 @@
           ("M-_"))
   :init
   (setq undo-tree-auto-save-history nil)
-  (message-clean-mode-add-echo-commands '( undo-tree-undo undo-tree-redo))
+  (msg-clean-add-echo-commands '( undo-tree-undo undo-tree-redo))
   :config
   (global-undo-tree-mode t))

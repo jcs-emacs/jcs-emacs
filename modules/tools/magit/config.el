@@ -18,7 +18,7 @@
         ;; Display file icons
         magit-format-file-function #'magit-format-file-nerd-icons)
 
-  (message-clean-mode-add-echo-commands
+  (msg-clean-add-echo-commands
    '( magit-process-sentinel magit-commit-diff magit-run-git-async
       git-commit-save-message)))
 
