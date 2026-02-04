@@ -36,8 +36,7 @@
   "Cache for buffer groups.")
 
 (jcs-add-hook '( centaur-tabs-mode-hook)
-  (setq jcs-tabs-line--group-cache (make-hash-table :test #'equal))
-  (ic "clean"))
+  (setq jcs-tabs-line--group-cache (make-hash-table :test #'equal)))
 
 (defun jcs-tabs-clear-dead-buffers ()
   "Remove all dead buffers from group cache."
