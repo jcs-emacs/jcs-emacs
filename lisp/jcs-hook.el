@@ -87,7 +87,7 @@
   (global-goto-address-mode 1)
   (guard-lf-mode 1)
   (lsp-smart-req-mode 1)
-  (msg-clean 1)
+  (msg-clean-mode 1)
   (minibuffer-depth-indicate-mode 1)
   (global-page-break-lines-mode 1)
   (recentf-excl-mode 1)
