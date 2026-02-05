@@ -99,8 +99,8 @@
 (mapc
  (lambda (file)
    (load (concat elenv-user-home-dir file) t t))
- '(".emacs.jcs.d/init.el"
-   ".config/.emacs.jcs.d/init.el"))
+ '(".emacs.jcs/init.el"
+   ".config/.emacs.jcs/init.el"))
 
 ;; Local Variables:
 ;; coding: utf-8
