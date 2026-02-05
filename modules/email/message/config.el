@@ -8,6 +8,9 @@
 
 (msg-clean-add-echo-commands '( mail-send))
 
+;; Select account before writing email.
+(gnus-select-account-enable)
+
 ;;
 ;; (@* "Hook" )
 ;;

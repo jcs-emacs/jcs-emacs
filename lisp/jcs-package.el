@@ -285,6 +285,7 @@
            gitignore-templates
            gitlab-ci-mode-flycheck
            gl-conf-mode
+           gnus-select-account
            google-this
            goto-last-change
            gptscript-mode
