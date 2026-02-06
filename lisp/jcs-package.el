@@ -440,6 +440,7 @@
            raku-mode
            region-occurrences-highlighter
            region-state
+           renpy-mode
            repos-window
            responsive-window
            restart-emacs

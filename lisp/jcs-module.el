@@ -172,6 +172,7 @@
     (qss-mode                               . "lang/qss")
     (racket-mode                            . "lang/racket")
     (raku-mode                              . "lang/raku")
+    (renpy-mode                             . "lang/renpy")
     (restclient                             . "lang/rest")
     (ruby-mode                              . "lang/ruby")
     (rust-mode                              . "lang/rust")
