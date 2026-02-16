@@ -49,7 +49,7 @@
     (browse-kill-ring                       . "misc/browse-kill-ring")
     (flx                                    . "misc/flx")
     (suggest                                . "misc/suggest")
-    (google-translate                       . "misc/translator")
+    (( google-translate gt)                 . "misc/translator")
     (with-editor                            . "misc/with-editor")
     (nov                                    . "reader/epub")
     (logview                                . "reader/log")
