@@ -6,3 +6,8 @@
         google-translate-default-target-language "zh-TW")
   :config
   (jcs-advice-add 'google-translate--search-tkk :override (list 430675 2721866130)))
+
+(use-package gt
+  :init
+  (setq gt-langs '("en" "zh-TW")
+        gt-default-translator (gt-translator :engines (gt-google-engine))))
