@@ -183,6 +183,9 @@
      ((jcs-member name '("[*]wclock[*]")
                   'regex)
       "Time")
+     ((jcs-member name '("[*]gt-")
+                  'regex)
+      "Translator")
      ((jcs-member name '("[*]tree-sitter"
                          "tree-sitter-tree:")
                   'regex)
