@@ -290,6 +290,7 @@
            goto-last-change
            gptscript-mode
            graphviz-dot-mode
+           gt
            guard-lf
            haml-mode
            hammy
