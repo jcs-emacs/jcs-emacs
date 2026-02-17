@@ -447,6 +447,7 @@
            restart-emacs
            robots-txt-mode
            ron-mode
+           rpm-spec-mode
            scad-mode
            scrollable-quick-peek
            scss-mode

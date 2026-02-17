@@ -126,7 +126,7 @@
 ;; (@* "Modes" )
 ;;
 
-(jcs-add-hook '(text-mode-hook prog-mode-hook conf-mode-hook)
+(jcs-add-hook '( text-mode-hook prog-mode-hook conf-mode-hook)
   (alt-codes-mode 1)
   (auto-close-block-mode 1)
   (auto-highlight-symbol-mode 1)
@@ -180,7 +180,7 @@
 ;; (@* "Quitting" )
 ;;
 
-(jcs-advice-add '(keyboard-quit top-level) :before
+(jcs-advice-add '( keyboard-quit top-level) :before
   (jcs-fboundp-apply #'jcs-backtrace-exit))
 
 (provide 'jcs-hook)
