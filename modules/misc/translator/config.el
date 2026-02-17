@@ -9,5 +9,6 @@
 
 (use-package gt
   :init
-  (setq gt-langs '("en" "zh-TW")
-        gt-default-translator (gt-translator :engines (gt-google-engine))))
+  (setq gt-langs '("auto" "zh-TW")
+        gt-default-translator (gt-translator :engines (gt-google-engine)
+                                             :render  (gt-buffer-render))))
