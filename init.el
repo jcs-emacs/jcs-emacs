@@ -55,9 +55,13 @@
 ;; (@* "Constant" )
 ;;
 
-(defconst jcs-homepage
+(defconst jcs-home-page
+  "https://jcs-emacs.github.io/"
+  "The home page of JCS-Emacs.")
+
+(defconst jcs-repo-page
   "https://github.com/jcs-emacs/jcs-emacs"
-  "The Github page of JCS-Emacs.")
+  "The repo link of JCS-Emacs.")
 
 ;;
 ;; (@* "Core" )

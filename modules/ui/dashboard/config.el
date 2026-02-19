@@ -76,8 +76,8 @@
                (nerd-icons-faicon "nf-fa-github"
                                   :height dashboard-heading-icon-height
                                   :v-adjust dashboard-heading-icon-v-adjust))
-            "Homepage" "Browse homepage"
-            (lambda (&rest _) (browse-url jcs-homepage)))
+            "Source" "Browse source"
+            (lambda (&rest _) (browse-url jcs-repo-page)))
            (,(when elenv-graphic-p
                (nerd-icons-faicon "nf-fae-tools"
                                   :height dashboard-heading-icon-height
