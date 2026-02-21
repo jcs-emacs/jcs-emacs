@@ -52,11 +52,10 @@
 (defconst jcs-default-font-size
   (let* ((mpw (elenv-monitor-pixel-width))
          (mph (elenv-monitor-pixel-height))
-         (is-v (< mph mpw))
-         (sfs (alist-get (if is-v 'width 'height) jcs-standard-font-size)))
-    (floor (* (/ (float (if is-v mpw mph))
-                 (car sfs))
-              (cdr sfs))))
+         (sfsw (alist-get 'width jcs-standard-font-size))
+         (sfsh (alist-get 'height jcs-standard-font-size)))
+    (floor (max (* (/ (float mpw) (car sfsw)) (cdr sfsw))
+                (* (/ (float mph) (car sfsh)) (cdr sfsh)))))
   "Default font size, the value is in 1/10pt, so 100 will give you 10pt, etc.")
 
 (use-package use-ttf
