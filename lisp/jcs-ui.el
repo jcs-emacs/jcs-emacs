@@ -45,7 +45,13 @@
 ;;
 ;;; Font
 
-(defconst jcs-default-font-size 160
+(defconst jcs-standard-font-size '(1920 . 160)
+  "The standard font to calculate the default font size.")
+
+(defconst jcs-default-font-size (floor
+                                 (* (/ (elenv-monitor-pixel-width)
+                                       (car jcs-standard-font-size))
+                                    (cdr jcs-standard-font-size)))
   "Default font size, the value is in 1/10pt, so 100 will give you 10pt, etc.")
 
 (use-package use-ttf
