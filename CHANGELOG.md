@@ -8,7 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 9.3.1 (Unreleased)
 > Released N/A
 
-* N/A
+* feat: Calculate font size base on resolution ([`016d3c7`](../../commit/016d3c73eaf445f0fd244165c7a9862a396be0c9))
 
 ## 9.3.0
 > Released Feb 04, 2026
