@@ -413,6 +413,7 @@
            pangu-spacing
            parse-it
            password-generator
+           password-menu
            password-mode
            phpt-mode
            pip-requirements
