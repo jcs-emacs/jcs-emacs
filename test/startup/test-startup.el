@@ -23,6 +23,9 @@
       (url-show-status)
       (early-init-file (locate-user-emacs-file "early-init.el"))
       (user-init-file (locate-user-emacs-file "init.el")))
+  ;; TODO: Not sure why we need this.
+  (progn
+    (package-activate-all))
   (load early-init-file)
   (load user-init-file)  ; Start regular Emacs file
   (run-hooks 'after-init-hook)
