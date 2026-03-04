@@ -139,3 +139,6 @@
 
 (use-package sideline-eros
   :hook (sideline-mode . sideline-eros-setup))
+
+(use-package let-completion
+  :hook (emacs-lisp-mode . let-completion-mode))

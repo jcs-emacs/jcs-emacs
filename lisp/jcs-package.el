@@ -337,6 +337,7 @@
            kotlin-mode
            kubernetes
            ledger-mode
+           let-completion
            license-templates
            line-reminder
            list-environment
