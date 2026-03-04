@@ -141,4 +141,6 @@
   :hook (sideline-mode . sideline-eros-setup))
 
 (use-package let-completion
-  :hook (emacs-lisp-mode . let-completion-mode))
+  :hook (emacs-lisp-mode . let-completion-mode)
+  :init
+  (setq let-completion-annotation-format "(Local)"))
