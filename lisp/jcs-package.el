@@ -138,6 +138,7 @@
            company-terraform
            composer
            comware-router-mode
+           conflict-buttons
            consult-todo
            consult-vc-modified-files
            crux

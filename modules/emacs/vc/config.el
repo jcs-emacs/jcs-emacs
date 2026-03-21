@@ -46,3 +46,7 @@
                                magit-branch-and-checkout
                                magit-branch-or-checkout
                                magit-branch-checkout)))
+
+(use-package conflict-buttons
+  :defer t
+  :hook (smerge-mode . conflict-buttons-mode))
