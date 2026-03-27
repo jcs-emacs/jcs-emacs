@@ -143,4 +143,5 @@
 (use-package let-completion
   :hook (emacs-lisp-mode . let-completion-mode)
   :init
-  (setq let-completion-annotation-format "(Local)"))
+  (setq let-completion-inline-max-width nil
+        let-completion-annotation-format " (Local)"))
