@@ -485,6 +485,7 @@
            sort-words
            sql-indent
            ssh-config-mode
+           struct-completion
            suggest
            svelte-mode
            swift-mode

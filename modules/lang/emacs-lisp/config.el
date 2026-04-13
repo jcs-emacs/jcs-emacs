@@ -145,3 +145,6 @@
   :init
   (setq let-completion-annotation-format " (Local)"
         let-completion-inline-max-width nil))
+
+(use-package struct-completion
+  :hook (emacs-lisp-mode . struct-completion-mode))
