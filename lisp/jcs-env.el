@@ -254,7 +254,8 @@
   (setq recentf-excl-commands '( jcs-goto-definition
                                  jcs-goto-definition-other-window
                                  jcs-peek-definition
-                                 ediff-find-file)))
+                                 ediff-find-file
+                                 elfeed-db-save)))
 
 ;;
 ;;; Revert
