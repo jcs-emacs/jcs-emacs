@@ -73,6 +73,7 @@
     (sqlite-mode                            . "tools/sqlite")
     (terraform-mode                         . "tools/terraform")
     (tree-sitter                            . "tools/tree-sitter")
+    (breadcrumb                             . "ui/breadcrumb")
     (dashboard                              . "ui/dashboard")
     (emojify                                . "ui/emoji")
     (hl-todo                                . "ui/hl-todo")
