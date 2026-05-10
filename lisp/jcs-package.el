@@ -365,7 +365,6 @@
            lsp-smart-req
            lsp-sonarlint
            lsp-sourcekit
-           lsp-tailwindcss
            magik-company
            magit-lfs
            magit-todos
