@@ -47,6 +47,7 @@
           "[*]dart"
           "[*]ellsp" "[*]elsa"
           "[*]eslint"
+          "[*]msw[.-_]+mlua"
           "[*]perlnavigator"
           "[*]lua-"
           "[*]iph[*]"
