@@ -356,6 +356,7 @@
            lsp-latex
            lsp-ltex-plus
            lsp-metals
+           lsp-mlua
            lsp-mssql
            lsp-p4
            lsp-pascal
@@ -380,6 +381,7 @@
            meta-view
            minimap
            mint-mode
+           mlua-mode
            moom
            most-used-words
            move-text

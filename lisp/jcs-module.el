@@ -153,6 +153,7 @@
     (markdown-mode                          . "lang/markdown")
     (mermaid-mode                           . "lang/mermaid")
     (mint-mode                              . "lang/mint")
+    (mlua-mode                              . "lang/mlua")
     (nginx-mode                             . "lang/nginx")
     (nim-mode                               . "lang/nim")
     (nix-mode                               . "lang/nix")
